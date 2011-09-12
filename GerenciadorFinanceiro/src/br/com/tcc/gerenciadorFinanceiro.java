@@ -13,29 +13,33 @@ public class gerenciadorFinanceiro extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
     }
-    
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {    
-    	MenuInflater inflater = getMenuInflater();    
-    	inflater.inflate(R.layout.menu, menu);   	   	
-    	return true;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.layout.menu, menu);
+        return true;
     }
-    
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {    
-    	// Handle item selection
-    	Alerts al = new Alerts();
-    	switch (item.getItemId()) {    
-    		case R.id.exit:
-    			this.finish();    			
-    			return true;
-    		case R.id.sobre:
-    			al.AlertAbout(this,"Gerenciador Financeiro","Inatel - TCC \n Tema: S.O. Android");
-    			return true;
-    		default:        
-    			return super.onOptionsItemSelected(item); 
-    			
-    	}
-    	
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        String title;
+        String message;
+        Alerts al = new Alerts();
+        switch (item.getItemId()) {
+        case R.id.exit:
+            this.finish();
+            return true;
+        case R.id.sobre:
+            title = getResources().getString(R.string.app_name);
+            message = getResources().getString(R.string.about_txt);
+            al.AlertAbout(this, title, message);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+
+        }
+
     }
 }

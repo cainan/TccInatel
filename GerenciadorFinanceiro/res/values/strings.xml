@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, gerenciadorFinanceiro!</string>
-    <string name="app_name">GerenciadorFinanceiro</string>
+    <string name="app_name">Gerenciador Financeiro</string>
     <string name="exit">Sair</string>
     <string name="sobre">Sobre</string>
+    <string name="about_txt">Inatel - TCC \n Tema: S.O. Android</string>
+    
 </resources>

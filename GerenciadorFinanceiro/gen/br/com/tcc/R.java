@@ -37,9 +37,9 @@ public final class R {
         public static final int menu=0x7f030002;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int exit=0x7f040002;
-        public static final int hello=0x7f040000;
-        public static final int sobre=0x7f040003;
+        public static final int about_txt=0x7f040003;
+        public static final int app_name=0x7f040000;
+        public static final int exit=0x7f040001;
+        public static final int sobre=0x7f040002;
     }
 }
