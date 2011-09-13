@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".View.RegisterBill"
+            android:theme="@style/Theme.Transparent">
+        </activity>
+
         <service
             android:name=".Service.ScheduleService" />
 
