@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import br.com.tcc.R;
 import br.com.tcc.Alert.Alerts;
 import br.com.tcc.Service.ScheduleService;
@@ -19,6 +22,22 @@ public class GerenciadorFinanceiro extends Activity {
 
         startService(new Intent(this, ScheduleService.class));
 
+        initView();
+
+    }
+
+    private void initView() {
+        Button registerBill = (Button) findViewById(R.id.btn_register_bill);
+        if (registerBill != null) {
+            registerBill.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    startActivity(new Intent(getApplicationContext(), RegisterBill.class));
+                }
+
+            });
+        }
     }
 
     @Override
