@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fundo2"
-    >
-<ImageView 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content" 
-    android:src="@drawable/titulo" 
-    android:id="@+id/imageView1"
-    android:layout_marginBottom="40px"
-    >
-</ImageView>
-<Button android:text="Button1" android:id="@+id/button1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:text="Button2" android:id="@+id/button2" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:text="Button3" android:id="@+id/button3" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:text="Button4" android:id="@+id/button4" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+    android:background="@drawable/fundo2">
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/titulo"
+        android:id="@+id/imageView1"
+        android:layout_marginBottom="40px">
+    </ImageView>
+    <Button
+        android:id="@+id/btn_register_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_bill_txt" />
+
+    <Button
+        android:text="Button2"
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+    <Button
+        android:text="Button3"
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+    <Button
+        android:text="Button4"
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
 
 </LinearLayout>
