@@ -3,4 +3,6 @@
 
     <drawable name="transparent_background">#BB000000</drawable>
 
+<color name="red">#FF0000</color>
+<color name="white">#FFFFFF</color>
 </resources>

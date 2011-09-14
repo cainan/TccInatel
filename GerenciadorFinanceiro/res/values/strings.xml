@@ -6,12 +6,15 @@
     <string name="about_txt">Inatel - TCC \n Tema: S.O. Android</string>
     <string name="register_bill_txt">Cadastrar Conta</string>
     <string name="location_gps">Localizar Bancos</string>
-    <string name="name_txt">Conta:</string>
-    <string name="vencimento_txt">Vencimento:</string>
-    <string name="valor_txt">Valor:</string>
+    <string name="name_txt">Conta*:</string>
+    <string name="vencimento_txt">Vencimento*:</string>
+    <string name="valor_txt">Valor*:</string>
     <string name="cancelar">Cancelar</string>
     <string name="enviar">Enviar</string>
     <string name="codigo_barra">Código de Barra:</string>
     <string name="inserir">Inserir</string>
-    
+    <string name="pagamento_realizado">Pagamento Realizado</string>
+    <string name="preencha_campos">Preencha todos os campos corretamente.</string>
+    <string name="ok_txt">Ok</string>
+
 </resources>

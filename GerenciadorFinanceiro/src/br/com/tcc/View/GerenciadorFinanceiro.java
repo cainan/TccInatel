@@ -39,6 +39,8 @@ public class GerenciadorFinanceiro extends Activity {
                 @Override
                 public void onClick(View arg0) {
                     startActivity(new Intent(getApplicationContext(), RegisterBill.class));
+                    overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+                    //overridePendingTransition(R.anim.fade, R.anim.hold);
                 }
 
             });

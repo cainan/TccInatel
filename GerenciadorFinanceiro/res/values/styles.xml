@@ -12,5 +12,5 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:colorForeground">#fff</item>
     </style>
-
+    
 </resources>
