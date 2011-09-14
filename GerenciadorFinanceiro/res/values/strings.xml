@@ -5,6 +5,7 @@
     <string name="sobre">Sobre</string>
     <string name="about_txt">Inatel - TCC \n Tema: S.O. Android</string>
     <string name="register_bill_txt">Cadastrar Conta</string>
+    <string name="location_gps">Localizar Bancos</string>
     <string name="bill_txt">Conta:</string>
     
 </resources>
