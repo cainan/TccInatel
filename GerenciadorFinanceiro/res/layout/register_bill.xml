@@ -6,24 +6,112 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="7dip"
-        android:layout_marginRight="7dip">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingRight="5dip"
+            android:paddingLeft="7dip">
 
             <TextView
+                android:id="@+id/name_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bill_txt" />
+                android:textSize="16dip"
+                android:layout_marginBottom="2dip"
+                android:text="@string/name_txt" />
 
             <EditText
-                android:id="@+id/edit_bill"
+                android:id="@+id/name_edit"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dip" />
+
+            <TextView
+                android:id="@+id/vencimento_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dip"
+                android:layout_marginBottom="2dip"
+                android:text="@string/vencimento_txt" />
+
+            <EditText
+                android:id="@+id/vencimento_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dip" />
+
+            <TextView
+                android:id="@+id/valor_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dip"
+                android:layout_marginBottom="2dip"
+                android:text="@string/valor_txt" />
+
+            <EditText
+                android:id="@+id/valor_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="3dip" />
+
+
+            <TextView
+                android:id="@+id/cod_barra_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dip"
+                android:layout_marginBottom="2dip"
+                android:text="@string/codigo_barra" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dip">
+
+                <EditText
+                    android:id="@+id/cod_barra_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:inputType="numberDecimal" />
+
+                <Button
+                    android:id="@+id/btn_cod_barra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dip"
+                    android:layout_weight="1"
+                    android:text="@string/inserir" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dip">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dip"
+                    android:text="@string/cancelar" />
+
+                <Button
+                    android:id="@+id/btn_enviar"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dip"
+                    android:text="@string/enviar" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
