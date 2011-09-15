@@ -34,7 +34,7 @@
             android:name=".Service.ScheduleService" />
 
         <uses-library
-            android:name="com.google.android.maps" />
+            android:name="com.google.android.maps" /> 
     </application>
 
     <uses-permission
