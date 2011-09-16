@@ -17,11 +17,13 @@ import br.com.tcc.Service.ScheduleService;
 
 public class GerenciadorFinanceiro extends Activity {
     /** Called when the activity is first created. */
+	private locationManager lm = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        
+        lm = new locationManager();
         startService(new Intent(this, ScheduleService.class));
 
         initView();
@@ -31,7 +33,7 @@ public class GerenciadorFinanceiro extends Activity {
     private void initView() {
         Button registerBill = (Button) findViewById(R.id.btn_register_bill);
         Button locationGps = (Button) findViewById(R.id.btn_location_gps);
-        final locationManager lm = new locationManager(); 
+         
         
         if (registerBill != null) {
             registerBill.setOnClickListener(new OnClickListener() {
@@ -88,4 +90,11 @@ public class GerenciadorFinanceiro extends Activity {
         }
 
     }
+    
+    @Override
+	protected void onResume(){
+		super.onResume();
+		lm.turnGPSOff(this);
+	}
+
 }
