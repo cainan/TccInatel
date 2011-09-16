@@ -10,22 +10,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 import br.com.tcc.R;
 import br.com.tcc.Alert.Alerts;
-import br.com.tcc.Location.locationManager;
+import br.com.tcc.Location.gpsManager;
 import br.com.tcc.Service.ScheduleService;
 
 public class GerenciadorFinanceiro extends Activity {
     /** Called when the activity is first created. */
-	private locationManager lm = null;
+	private gpsManager gm = null;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
-        lm = new locationManager();
         startService(new Intent(this, ScheduleService.class));
-
+        
+        gm = new gpsManager();
         initView();
 
     }
@@ -33,7 +34,7 @@ public class GerenciadorFinanceiro extends Activity {
     private void initView() {
         Button registerBill = (Button) findViewById(R.id.btn_register_bill);
         Button locationGps = (Button) findViewById(R.id.btn_location_gps);
-         
+        
         
         if (registerBill != null) {
             registerBill.setOnClickListener(new OnClickListener() {
@@ -52,11 +53,16 @@ public class GerenciadorFinanceiro extends Activity {
         	locationGps.setOnClickListener(new OnClickListener() {
         		 @Override
                  public void onClick(View arg0) {
-        			lm. turnGPSOn(GerenciadorFinanceiro.this);
-        			String geoUriString = ("geo:0,0?q=bancos em " + lm.getNameLocation(GerenciadorFinanceiro.this)); 	        
-         	        Uri geoUri = Uri.parse(geoUriString);
-         	        Intent mapCall = new Intent(Intent.ACTION_VIEW, geoUri);  
-         	        startActivity(mapCall);
+        			if(gm.chkConnectionStatus(GerenciadorFinanceiro.this)){ 
+        				gm.turnGPSOn(GerenciadorFinanceiro.this);
+        				String geoUriString = ("geo:0,0?q=Agencias bancarias"); 	        
+        				Uri geoUri = Uri.parse(geoUriString);
+        				Intent mapCall = new Intent(Intent.ACTION_VIEW, geoUri);  
+        				startActivity(mapCall);
+        			}
+        			else
+        				Toast.makeText(GerenciadorFinanceiro.this, 
+        						"No Internet Connection" , Toast.LENGTH_LONG).show();
                  }
         		
         	});
@@ -93,9 +99,8 @@ public class GerenciadorFinanceiro extends Activity {
     }
     
     @Override
-	protected void onResume(){
-		super.onResume();
-		lm.turnGPSOff(GerenciadorFinanceiro.this);
-	}
-
+    protected void onResume(){
+    	super.onResume();
+    	gm.turnGPSOff(GerenciadorFinanceiro.this);   	
+    }
 }
