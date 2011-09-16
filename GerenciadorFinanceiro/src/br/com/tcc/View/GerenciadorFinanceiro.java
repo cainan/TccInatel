@@ -51,7 +51,8 @@ public class GerenciadorFinanceiro extends Activity {
         if(locationGps != null){
         	locationGps.setOnClickListener(new OnClickListener() {
         		 @Override
-                 public void onClick(View arg0) {    			
+                 public void onClick(View arg0) {
+        			lm. turnGPSOn(GerenciadorFinanceiro.this);
         			String geoUriString = ("geo:0,0?q=bancos em " + lm.getNameLocation(GerenciadorFinanceiro.this)); 	        
          	        Uri geoUri = Uri.parse(geoUriString);
          	        Intent mapCall = new Intent(Intent.ACTION_VIEW, geoUri);  
@@ -94,7 +95,7 @@ public class GerenciadorFinanceiro extends Activity {
     @Override
 	protected void onResume(){
 		super.onResume();
-		lm.turnGPSOff(this);
+		lm.turnGPSOff(GerenciadorFinanceiro.this);
 	}
 
 }
