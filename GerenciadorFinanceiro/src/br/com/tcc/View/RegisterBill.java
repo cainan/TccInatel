@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.com.tcc.R;
+import br.com.tcc.Database.DatabaseDelegate;
 import br.com.tcc.Model.Conta;
 
 public class RegisterBill extends Activity {
@@ -159,8 +160,13 @@ public class RegisterBill extends Activity {
 
         conta.setPago(mPayed.isChecked());
 
-        // TODO send the variable conta to DB class and save it.
-        Toast.makeText(this, "GRAVAR dados no DB", Toast.LENGTH_LONG).show();
+        DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());
+        if (db.inserir(conta) > 0) {
+            Toast.makeText(this, "Dados gravados com sucesso", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Ocorreu um erro durante a gravação", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
