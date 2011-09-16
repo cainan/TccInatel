@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -126,6 +127,8 @@ public class RegisterBill extends Activity {
             @Override
             public void onClick(View arg0) {
                 // TODO call bar code scanner.
+                Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+        		startActivityForResult(intent, 0);
             }
 
         });
@@ -165,7 +168,7 @@ public class RegisterBill extends Activity {
             Toast.makeText(this, "Dados gravados com sucesso", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(this, "Ocorreu um erro durante a gravação", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ocorreu um erro durante a gravaÃ§Ã£o", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -281,5 +284,17 @@ public class RegisterBill extends Activity {
             mPaymentDateEdit.setText(mDay + "/" + mMonth + "/" + mYear);
         }
     };
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		
+    	if (requestCode == 0) {
+    		if (resultCode == RESULT_OK) {
+    			String contents = intent.getStringExtra("SCAN_RESULT");
+    			String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+    			
+    			mBarcodeEdit.setText(contents);   			
+    		}
+    	}
+    }
 
 }
