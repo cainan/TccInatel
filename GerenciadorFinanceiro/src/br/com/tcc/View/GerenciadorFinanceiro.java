@@ -101,6 +101,6 @@ public class GerenciadorFinanceiro extends Activity {
     @Override
     protected void onResume(){
     	super.onResume();
-    	gm.turnGPSOff(GerenciadorFinanceiro.this);   	
+    	this.gm.turnGPSOff(GerenciadorFinanceiro.this);   	
     }
 }
