@@ -16,5 +16,6 @@
     <string name="pagamento_realizado">Pagamento Realizado</string>
     <string name="preencha_campos">Preencha todos os campos corretamente.</string>
     <string name="ok_txt">Ok</string>
+    <string name="notificar_txt">Notificar às*:</string>
 
 </resources>

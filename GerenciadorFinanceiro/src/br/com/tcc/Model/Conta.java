@@ -11,11 +11,21 @@ public class Conta implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+    private int mId;
     private String mNome;
     private String mVencimento;
     private String mValor;
     private String mCodigoBarra;
+    private String mNotificar;
     private boolean mPago;
+
+    public void setId(int mId) {
+        this.mId = mId;
+    }
+
+    public int getId() {
+        return mId;
+    }
 
     public String getNome() {
         return mNome;
@@ -57,6 +67,14 @@ public class Conta implements Serializable {
         return mPago;
     }
 
+    public void setNotificar(String mNotificar) {
+        this.mNotificar = mNotificar;
+    }
+
+    public String getNotificar() {
+        return mNotificar;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Conta)) {
@@ -90,5 +108,4 @@ public class Conta implements Serializable {
         }
         return value;
     }
-
 }

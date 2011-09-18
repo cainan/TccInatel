@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import br.com.tcc.R;
 import br.com.tcc.Database.DatabaseDelegate;
@@ -29,13 +31,21 @@ public class RegisterBill extends Activity {
     private static final String NAME_LABEL = "nameLabel";
     private static final String PAYMENT_DATE_LABEL = "paymentDateLabel";
     private static final String VALUE_LABEL = "valueLabel";
+    private static final String NOTIFY_LABEL = "notifyLabel";
 
     /** The minimum length in a field */
     private static final int MINIMUM_LENGTH = 2;
 
     /** Dialogs ID */
     private static final int DATE_DIALOG_ID = 0;
-    private static final int INCOMPLETE_FIELD_DIALOG_ID = 1;
+    private static final int TIME_DIALOG_ID = 1;
+    private static final int INCOMPLETE_FIELD_DIALOG_ID = 2;
+
+    /** Hold the hour */
+    private int mHour;
+
+    /** Hold the minute */
+    private int mMinute;
 
     /** Hold the year */
     private int mYear;
@@ -46,17 +56,23 @@ public class RegisterBill extends Activity {
     /** Hold the day */
     private int mDay;
 
+    /** Hold the notify field */
+    private EditText mNotifyEdit;
+
     /** Hold the barcode field */
-    private TextView mBarcodeEdit;
+    private EditText mBarcodeEdit;
 
     /** Hold the Bill's value field */
-    private TextView mValueEdit;
+    private EditText mValueEdit;
 
     /** Hold the Bill's name field */
-    private TextView mNameEdit;
+    private EditText mNameEdit;
 
     /** Hold the payment date field */
     private EditText mPaymentDateEdit;
+
+    /** Hold the Notify label */
+    private TextView mNotifyLabel;
 
     /** Hold the Bill's name label */
     private TextView mNameLabel;
@@ -67,7 +83,7 @@ public class RegisterBill extends Activity {
     /** Hold the Bill's value label */
     private TextView mValueLabel;
 
-    /** Hold the checkbox value */
+    /** Hold the check box value */
     private CheckBox mPayed;
 
     @Override
@@ -85,6 +101,8 @@ public class RegisterBill extends Activity {
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
 
     }
 
@@ -97,10 +115,22 @@ public class RegisterBill extends Activity {
         mPaymentDateLabel = (TextView) findViewById(R.id.vencimento_label);
         mValueLabel = (TextView) findViewById(R.id.valor_label);
         mPayed = (CheckBox) findViewById(R.id.checkbox);
+        mNotifyLabel = (TextView) findViewById(R.id.notificar_label);
 
         mBarcodeEdit = (EditText) findViewById(R.id.cod_barra_edit);
         mNameEdit = (EditText) findViewById(R.id.name_edit);
         mValueEdit = (EditText) findViewById(R.id.valor_edit);
+
+        mNotifyEdit = (EditText) findViewById(R.id.notificar_edit);
+        mNotifyEdit.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                showDialog(TIME_DIALOG_ID);
+            }
+
+        });
+
         mPaymentDateEdit = (EditText) findViewById(R.id.vencimento_edit);
         mPaymentDateEdit.setOnClickListener(new OnClickListener() {
 
@@ -156,6 +186,7 @@ public class RegisterBill extends Activity {
         conta.setNome(mNameEdit.getText().toString());
         conta.setValor(mValueEdit.getText().toString());
         conta.setVencimento(mPaymentDateEdit.getText().toString());
+        conta.setNotificar(mNotifyEdit.getText().toString());
 
         if (mBarcodeEdit.getText().toString().length() > MINIMUM_LENGTH) {
             conta.setCodigoBarra(mBarcodeEdit.getText().toString());
@@ -200,6 +231,12 @@ public class RegisterBill extends Activity {
             mValueLabel.setSelected(true);
         }
 
+        mNotifyLabel.setSelected(false);
+        if (mNotifyEdit.getText().toString().length() < MINIMUM_LENGTH) {
+            valid = false;
+            mNotifyLabel.setSelected(true);
+        }
+
         return valid;
     }
 
@@ -213,6 +250,7 @@ public class RegisterBill extends Activity {
         mNameLabel.setSelected(savedInstanceState.getBoolean(NAME_LABEL));
         mPaymentDateLabel.setSelected(savedInstanceState.getBoolean(PAYMENT_DATE_LABEL));
         mValueLabel.setSelected(savedInstanceState.getBoolean(VALUE_LABEL));
+        mNotifyLabel.setSelected(savedInstanceState.getBoolean(NOTIFY_LABEL));
 
         super.onRestoreInstanceState(savedInstanceState);
     }
@@ -227,6 +265,7 @@ public class RegisterBill extends Activity {
         outState.putBoolean(NAME_LABEL, mNameLabel.isSelected());
         outState.putBoolean(PAYMENT_DATE_LABEL, mPaymentDateLabel.isSelected());
         outState.putBoolean(VALUE_LABEL, mValueLabel.isSelected());
+        outState.putBoolean(NOTIFY_LABEL, mNotifyLabel.isSelected());
 
         super.onSaveInstanceState(outState);
     }
@@ -244,6 +283,9 @@ public class RegisterBill extends Activity {
         switch (id) {
         case DATE_DIALOG_ID:
             return new DatePickerDialog(this, mDateSetListener, mYear, mMonth, mDay);
+
+        case TIME_DIALOG_ID:
+            return new TimePickerDialog(this, mTimeSetListener, mHour, mMinute, true);
 
         case INCOMPLETE_FIELD_DIALOG_ID:
             builder.setTitle(R.string.app_name).setMessage(R.string.preencha_campos);
@@ -281,10 +323,28 @@ public class RegisterBill extends Activity {
             mYear = year;
             mMonth = monthOfYear;
             mDay = dayOfMonth;
-            mPaymentDateEdit.setText(mDay + "/" + mMonth + "/" + mYear);
+
+            // Month + 1 because GregorianCalendar goes from 0 to 11
+            int realMonth = mMonth + 1;
+
+            mPaymentDateEdit.setText(mDay + "/" + realMonth + "/" + mYear);
         }
     };
-    
+
+    /**
+     * TimePicker Listener to update the Payment notify field
+     */
+    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            mHour = hourOfDay;
+            mMinute = minute;
+            mNotifyEdit.setText(mHour + ":" + mMinute);
+        }
+
+    };
+	
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		
     	if (requestCode == 0) {
@@ -296,5 +356,4 @@ public class RegisterBill extends Activity {
     		}
     	}
     }
-
 }

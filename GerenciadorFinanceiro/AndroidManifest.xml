@@ -30,11 +30,17 @@
             android:screenOrientation="sensor">
         </activity>
 
+        <activity
+            android:name=".View.NotificationActivity"
+            android:theme="@style/Theme.Transparent"
+            android:screenOrientation="sensor">
+        </activity>
+
         <service
             android:name=".Service.ScheduleService" />
 
         <uses-library
-            android:name="com.google.android.maps" /> 
+            android:name="com.google.android.maps" />
     </application>
 
     <uses-permission
@@ -45,5 +51,7 @@
         android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission
         android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
 
 </manifest>
