@@ -3,7 +3,7 @@
     <string name="app_name">Gerenciador Financeiro</string>
     <string name="exit">Sair</string>
     <string name="sobre">Sobre</string>
-    <string name="about_txt">Inatel - TCC \n Tema: S.O. Android</string>
+    <string name="about_txt">Inatel - TCC \nTema: S.O. Android</string>
     <string name="register_bill_txt">Cadastrar Conta</string>
     <string name="location_gps">Localizar Bancos</string>
     <string name="name_txt">Conta*:</string>
@@ -17,5 +17,17 @@
     <string name="preencha_campos">Preencha todos os campos corretamente.</string>
     <string name="ok_txt">Ok</string>
     <string name="notificar_txt">Notificar às*:</string>
+    <string name="procurar_banco">Procurar Banco</string>
+    <string name="marcar_como_pago">Marcar como pago</string>
+    <string name="lembrar_mais_tarde">Lembrar mais tarde</string>
+    <string name="remarcar_data">Remarcar Data</string>
+    <string name="barcode_scanner_unavailable">
+    Para utilizar esse recurso é necessário possuir o "Barcode Scanner"
+    instalado, Deseja instala-lo agora?</string>
+    <string name="instalar">Instalar</string>
+    <string name="visualisar_contas">Visualisar Contas</string>
+    <string name="name">Conta: </string>
+    <string name="vencimento">Vencimento: </string>
+    <string name="valor">Valor: </string>
 
 </resources>

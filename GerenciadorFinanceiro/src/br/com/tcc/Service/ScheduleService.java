@@ -1,4 +1,4 @@
-package br.com.tcc.Service;
+package br.com.tcc.service;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -14,9 +14,9 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 import br.com.tcc.R;
-import br.com.tcc.Database.DatabaseDelegate;
-import br.com.tcc.Model.Conta;
-import br.com.tcc.View.NotificationActivity;
+import br.com.tcc.model.Conta;
+import br.com.tcc.model.database.DatabaseDelegate;
+import br.com.tcc.view.NotificationActivity;
 
 public class ScheduleService extends Service {
 
@@ -47,6 +47,9 @@ public class ScheduleService extends Service {
         super.onCreate();
     }
 
+    /**
+     * Broadcast receiver that receive an intent every time the time changes
+     */
     BroadcastReceiver mBroadcast = new BroadcastReceiver() {
 
         @Override
@@ -60,6 +63,9 @@ public class ScheduleService extends Service {
 
     };
 
+    /**
+     * Check if there is an bill to be payed in the moment that the method is called
+     */
     private void searchBillsToPay() {
         DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());
         ArrayList<Conta> arrayConta = db.ReadBillToPay();
@@ -97,6 +103,16 @@ public class ScheduleService extends Service {
         }
     }
 
+    /**
+     * Create a notification
+     * 
+     * @param context
+     * @param notificationBarText
+     * @param notificationTitle
+     * @param message
+     * @param class1
+     * @param conta
+     */
     private void createNotification(Context context, String notificationBarText,
             String notificationTitle, String message, Class<NotificationActivity> class1,
             Conta conta) {
@@ -120,6 +136,7 @@ public class ScheduleService extends Service {
         // Set notification event
         notification.setLatestEventInfo(context, notificationTitle, message, pendingItt);
 
+        // notification.vibrate = new long[] { 100, 250, 100, 300 };
         int id = conta.getId();
         nm.notify(id, notification);
 

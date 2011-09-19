@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/search_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/procurar_banco" />
+
+    <Button
+        android:id="@+id/mark_as_payed"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/marcar_como_pago" />
+
+    <Button
+        android:id="@+id/remind_later"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lembrar_mais_tarde" />
+        
+    <Button
+        android:id="@+id/remark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remarcar_data" />
+
+</LinearLayout>

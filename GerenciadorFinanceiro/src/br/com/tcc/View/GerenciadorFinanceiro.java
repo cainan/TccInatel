@@ -1,8 +1,6 @@
-package br.com.tcc.View;
+package br.com.tcc.view;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,65 +8,67 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 import br.com.tcc.R;
-import br.com.tcc.Alert.Alerts;
-import br.com.tcc.Location.GpsManager;
-import br.com.tcc.Service.ScheduleService;
+import br.com.tcc.service.ScheduleService;
+import br.com.tcc.utils.Alerts;
 
-public class GerenciadorFinanceiro extends Activity {
-    /** Called when the activity is first created. */
-	private GpsManager gm = null;
-	
+public class GerenciadorFinanceiro extends BaseActivity {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         startService(new Intent(this, ScheduleService.class));
-        
-        gm = new GpsManager();
-        initView();
 
+        initView();
     }
 
+    /**
+     * Initialize the view
+     */
     private void initView() {
         Button registerBill = (Button) findViewById(R.id.btn_register_bill);
         Button locationGps = (Button) findViewById(R.id.btn_location_gps);
-        
-        
+        Button showBills = (Button) findViewById(R.id.btn_show_bills);
+
         if (registerBill != null) {
             registerBill.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
-                    startActivity(new Intent(getApplicationContext(), RegisterBill.class));
+                    startActivity(new Intent(getApplicationContext(), RegisterBillActivity.class));
                     overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
-                    //overridePendingTransition(R.anim.fade, R.anim.hold);
+                    // overridePendingTransition(R.anim.fade, R.anim.hold);
                 }
 
             });
         }
-        
-        if(locationGps != null){
-        	locationGps.setOnClickListener(new OnClickListener() {
-        		 @Override
-                 public void onClick(View arg0) {
-        			if(gm.chkConnectionStatus(GerenciadorFinanceiro.this)){ 
-        				gm.turnGPSOn(GerenciadorFinanceiro.this);
-        				String geoUriString = ("geo:0,0?q=Agencias bancarias"); 	        
-        				Uri geoUri = Uri.parse(geoUriString);
-        				Intent mapCall = new Intent(Intent.ACTION_VIEW, geoUri);  
-        				startActivity(mapCall);
-        			}
-        			else
-        				Toast.makeText(GerenciadorFinanceiro.this, 
-        						"No Internet Connection" , Toast.LENGTH_LONG).show();
-                 }
-        		
-        	});
+
+        if (locationGps != null) {
+            locationGps.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    searchBanksGmaps();
+                }
+
+            });
+        }
+
+        if (showBills != null) {
+            showBills.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    startActivity(new Intent(getApplicationContext(), ListBillActivity.class));
+                }
+
+            });
         }
     }
 
+    /**
+     * Create the menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -76,6 +76,9 @@ public class GerenciadorFinanceiro extends Activity {
         return true;
     }
 
+    /**
+     * Set actions of menu's options
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -84,7 +87,7 @@ public class GerenciadorFinanceiro extends Activity {
         Alerts al = new Alerts();
         switch (item.getItemId()) {
         case R.id.exit:
-            this.finish();
+            finish();
             return true;
         case R.id.sobre:
             title = getResources().getString(R.string.app_name);
@@ -95,12 +98,6 @@ public class GerenciadorFinanceiro extends Activity {
             return super.onOptionsItemSelected(item);
 
         }
+    }
 
-    }
-    
-    @Override
-    protected void onResume(){
-    	super.onResume();
-    	this.gm.turnGPSOff(GerenciadorFinanceiro.this);   	
-    }
 }

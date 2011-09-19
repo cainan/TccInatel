@@ -1,4 +1,4 @@
-package br.com.tcc.Model;
+package br.com.tcc.model;
 
 import java.io.Serializable;
 
