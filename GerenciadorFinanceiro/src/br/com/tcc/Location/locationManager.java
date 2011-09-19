@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.widget.Toast;
 
-public class gpsManager {
+public class LocationManager {
 	
 	
 	public void turnGPSOn(Context ctx){

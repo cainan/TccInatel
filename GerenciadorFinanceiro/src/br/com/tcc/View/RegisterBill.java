@@ -352,7 +352,7 @@ public class RegisterBill extends Activity {
     			String contents = intent.getStringExtra("SCAN_RESULT");
     			String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
     			
-    			mBarcodeEdit.setText(contents);   			
+    			mBarcodeEdit.setText(contents);
     		}
     	}
     }

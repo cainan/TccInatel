@@ -13,12 +13,12 @@ import android.widget.Button;
 import android.widget.Toast;
 import br.com.tcc.R;
 import br.com.tcc.Alert.Alerts;
-import br.com.tcc.Location.gpsManager;
+import br.com.tcc.Location.GpsManager;
 import br.com.tcc.Service.ScheduleService;
 
 public class GerenciadorFinanceiro extends Activity {
     /** Called when the activity is first created. */
-	private gpsManager gm = null;
+	private GpsManager gm = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class GerenciadorFinanceiro extends Activity {
         setContentView(R.layout.main);
         startService(new Intent(this, ScheduleService.class));
         
-        gm = new gpsManager();
+        gm = new GpsManager();
         initView();
 
     }
