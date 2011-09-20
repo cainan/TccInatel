@@ -397,10 +397,10 @@ public class RegisterBillActivity extends BaseActivity {
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
 
         @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {      	
             mHour = hourOfDay;
             mMinute = minute;
-            mNotifyEdit.setText(mHour + ":" + mMinute);
+            mNotifyEdit.setText( String.format("%02d", mHour) + ":" + String.format("%02d", mMinute) );
         }
 
     };
