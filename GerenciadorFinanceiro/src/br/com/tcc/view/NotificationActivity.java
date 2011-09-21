@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import br.com.tcc.R;
 import br.com.tcc.model.Conta;
 import br.com.tcc.model.database.DatabaseDelegate;
@@ -83,6 +84,58 @@ public class NotificationActivity extends BaseActivity {
             }
 
         });
+
+        Button shareBtn = (Button) findViewById(R.id.share);
+        shareBtn.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                String text = "código: " + mBill.getCodigoBarra();
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(Intent.createChooser(sharingIntent, "Compartilhar com:"));
+
+                // String number = "12346556"; // The number on which you want to send SMS
+                // startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", number,
+                // null)));
+
+                // Uri uri = Uri.parse("smsto:");
+                // Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+                // it.putExtra("sms_body", "Here you can set the SMS text to be sent");
+                // startActivity(it);
+
+            }
+
+        });
+
+        TextView billField = (TextView) findViewById(R.id.bill);
+        if (billField != null && mBill.getNome() != null) {
+            billField.setText(mBill.getNome());
+        }
+
+        TextView valueField = (TextView) findViewById(R.id.value);
+        if (valueField != null && mBill.getValor() != null) {
+            valueField.setText(mBill.getValor());
+        }
+
+        TextView payField = (TextView) findViewById(R.id.pay);
+        if (payField != null && mBill.getVencimento() != null) {
+            payField.setText(mBill.getVencimento());
+        }
+
+        if (mBill.getCodigoBarra() != null) {
+            View barcodeLayout = (View) findViewById(R.id.barcode_layout);
+            if (barcodeLayout != null) {
+                barcodeLayout.setVisibility(View.VISIBLE);
+                TextView barcode = (TextView) findViewById(R.id.code);
+                if (barcode != null) {
+                    barcode.setText(mBill.getCodigoBarra());
+                }
+            }
+        }
     }
 
     /**

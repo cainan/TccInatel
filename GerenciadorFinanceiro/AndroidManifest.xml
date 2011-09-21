@@ -45,7 +45,8 @@
         </activity>
 
         <activity
-            android:name=".view.NotificationActivity">
+            android:name=".view.NotificationActivity"
+            android:theme="@style/Theme.NotificationDialog">
         </activity>
 
         <service

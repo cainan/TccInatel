@@ -7,7 +7,7 @@
     android:background="@drawable/fundo2">
     <ImageView
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:src="@drawable/titulo"
         android:id="@+id/imageView1"
         android:layout_marginBottom="40px">

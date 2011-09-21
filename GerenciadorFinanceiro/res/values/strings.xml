@@ -10,7 +10,8 @@
     <string name="vencimento_txt">Vencimento*:</string>
     <string name="valor_txt">Valor*:</string>
     <string name="cancelar">Cancelar</string>
-    <string name="enviar">Enviar</string>
+    <string name="gravar">Gravar</string>
+    <string name="alterar">Alterar</string>
     <string name="codigo_barra">Código de Barra:</string>
     <string name="inserir">Inserir</string>
     <string name="pagamento_realizado">Pagamento Realizado</string>
@@ -28,6 +29,8 @@
     <string name="visualisar_contas">Visualisar Contas</string>
     <string name="name">Conta: </string>
     <string name="vencimento">Vencimento: </string>
+    <string name="codigo">Código: </string>
     <string name="valor">Valor: </string>
+    <string name="share">Compartilhar Código de Barra</string>
 
 </resources>

@@ -55,7 +55,6 @@ public class ScheduleService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_TIME_TICK)) {
-                Log.d("log", "Time Changed");
                 searchBillsToPay();
             }
 
@@ -117,6 +116,9 @@ public class ScheduleService extends Service {
             String notificationTitle, String message, Class<NotificationActivity> class1,
             Conta conta) {
 
+        // Get Bill Id to use as the id of our notification
+        int id = conta.getId();
+
         // Get notification service
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
@@ -130,8 +132,7 @@ public class ScheduleService extends Service {
         itt.putExtra(NotificationActivity.BILL_PARAMETER, conta);
 
         // Configure PendingIntent
-        PendingIntent pendingItt = PendingIntent.getActivity(context, 0, itt,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingItt = PendingIntent.getActivity(context, id, itt, 0);
 
         // Set notification event
         notification.setLatestEventInfo(context, notificationTitle, message, pendingItt);
@@ -139,7 +140,6 @@ public class ScheduleService extends Service {
         // notification.vibrate = new long[] { 100, 250, 100, 300 };
         notification.defaults |= Notification.DEFAULT_LIGHTS;
 
-        int id = conta.getId();
         nm.notify(id, notification);
 
     }

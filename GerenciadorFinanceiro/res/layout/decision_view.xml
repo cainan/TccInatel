@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/fundo2">
+    android:background="@drawable/fundo_dialog">
+
 
     <ImageView
         android:id="@+id/imageView1"
@@ -13,28 +14,162 @@
         android:src="@drawable/titulo"
         android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/search_bank"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/procurar_banco" />
+        android:gravity="center_horizontal"
+        android:paddingBottom="2dip">
 
-    <Button
-        android:id="@+id/mark_as_payed"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/marcar_como_pago" />
+        <TextView
+            android:id="@+id/bill_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SubTitleFontWhite"
+            android:text="@string/name" />
+        <TextView
+            android:id="@+id/bill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/FontWhite"
+            android:layout_marginLeft="3dip"
+            android:layout_toRightOf="@id/bill_label" />
 
-    <Button
-        android:id="@+id/remind_later"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lembrar_mais_tarde" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/remark"
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="2dip">
+
+        <TextView
+            android:id="@+id/value_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SubTitleFontWhite"
+            android:text="@string/valor" />
+        <TextView
+            android:id="@+id/value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/FontWhite"
+            android:layout_marginLeft="3dip"
+            android:layout_toRightOf="@id/value_label" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="2dip">
+
+        <TextView
+            android:id="@+id/pay_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SubTitleFontWhite"
+            android:text="@string/vencimento" />
+        <TextView
+            android:id="@+id/pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/FontWhite"
+            android:layout_marginLeft="3dip"
+            android:layout_toRightOf="@id/pay_label" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/barcode_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:paddingBottom="2dip">
+
+        <TextView
+            android:id="@+id/code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SubTitleFontWhite"
+            android:text="@string/codigo" />
+        <TextView
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/FontWhite"
+            android:layout_marginLeft="3dip"
+            android:layout_toRightOf="@id/code_label" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/remarcar_data" />
+        android:paddingTop="25dip">
+
+        <Button
+            android:id="@+id/remind_later"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="3dip"
+            android:lines="2"
+            android:text="@string/lembrar_mais_tarde" />
+
+        <Button
+            android:id="@+id/mark_as_payed"
+            android:layout_height="wrap_content"
+            android:layout_width="130dip"
+            android:layout_alignParentRight="true"
+            android:lines="2"
+            android:layout_marginRight="3dip"
+            android:text="@string/marcar_como_pago" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dip">
+
+        <Button
+            android:id="@+id/search_bank"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="3dip"
+            android:text="@string/procurar_banco" />
+
+        <Button
+            android:id="@+id/remark"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dip"
+            android:lines="2"
+            android:text="@string/remarcar_data" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dip">
+
+        <Button
+            android:id="@+id/share"
+            android:layout_width="160dip"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="@string/share" />
+
+    </RelativeLayout>
 
 </LinearLayout>

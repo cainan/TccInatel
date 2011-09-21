@@ -2,7 +2,9 @@ package br.com.tcc.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
+import br.com.tcc.R;
 import br.com.tcc.model.Conta;
 import br.com.tcc.model.database.DatabaseDelegate;
 
@@ -30,6 +32,12 @@ public class EditBillActivity extends BillActivity {
      * FulFill the fields with the bill to be edited
      */
     private void fillFields() {
+
+        Button sendButton = (Button) findViewById(R.id.btn_enviar);
+        if (sendButton != null) {
+            sendButton.setText(getApplicationContext().getResources().getString(R.string.alterar));
+        }
+
         if (mBill.getNotificar() != null) {
             mNotifyEdit.setText(mBill.getNotificar());
             String[] time = mBill.getNotificar().split(":");
