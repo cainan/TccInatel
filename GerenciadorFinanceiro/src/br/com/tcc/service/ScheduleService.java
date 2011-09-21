@@ -137,6 +137,8 @@ public class ScheduleService extends Service {
         notification.setLatestEventInfo(context, notificationTitle, message, pendingItt);
 
         // notification.vibrate = new long[] { 100, 250, 100, 300 };
+        notification.defaults |= Notification.DEFAULT_LIGHTS;
+
         int id = conta.getId();
         nm.notify(id, notification);
 

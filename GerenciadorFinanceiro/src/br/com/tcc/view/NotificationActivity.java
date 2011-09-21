@@ -96,7 +96,7 @@ public class NotificationActivity extends BaseActivity {
         Log.d("log", "deadline: " + deadLine.getTime());
 
         // TODO Quando a hora for, por exemplo, 10:50, se aumentarmos 15 min, a hora ficará 10:05.
-        // precisa-se de uma lógica para incrementar esses 15 minutos da forma certa.
+        // Precisa-se de uma lógica para incrementar esses 15 minutos da forma certa.
 
         finish();
 

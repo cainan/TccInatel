@@ -10,13 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/titulo"
-        android:layout_alignParentTop="true" />
-
+        android:layout_alignParentLeft="true" />
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView1">
+        android:layout_toRightOf="@id/imageView1">
 
         <LinearLayout
             android:layout_width="fill_parent"

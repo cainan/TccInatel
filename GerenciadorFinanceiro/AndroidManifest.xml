@@ -25,8 +25,18 @@
         </activity>
 
         <activity
+            android:name=".view.BillActivity"
+            android:screenOrientation="sensor">
+        </activity>
+
+        <activity
             android:name=".view.RegisterBillActivity"
             android:theme="@style/Theme.Transparent"
+            android:screenOrientation="sensor">
+        </activity>
+
+        <activity
+            android:name=".view.EditBillActivity"
             android:screenOrientation="sensor">
         </activity>
 

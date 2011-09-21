@@ -77,22 +77,14 @@ public class DatabaseDelegate {
      * 
      * @param Conta
      */
-	public synchronized long inserir(Conta c) {
+    public synchronized long addBill(Conta bill) {
 
         Long success;
 
         // Open Database
         mDataBase = mDatabaseHelper.getWritableDatabase();
 
-        ContentValues cv = new ContentValues();
-
-        cv.put("conta", c.getNome());
-        cv.put("valor", c.getValor());
-        cv.put("vencimento", c.getVencimento());
-        cv.put("notificar", c.getNotificar());
-        cv.put("codigo", c.getCodigoBarra());
-        cv.put("status", c.isPago());
-        cv.put("notificar", c.getNotificar());
+        ContentValues cv = createContentValues(bill);
 
         success = mDataBase.insert(TABLE_NAME, null, cv);
 
@@ -181,7 +173,7 @@ public class DatabaseDelegate {
                 if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
                 } else {
-                    conta.setPago(false);
+                    conta.setPago(true);
                 }
 
                 arrayConta.add(conta);
@@ -211,5 +203,47 @@ public class DatabaseDelegate {
 
         // Open Database
         closeDb();
+    }
+
+    /**
+     * Edit a bill from data base using the id parameter
+     * 
+     * @param bill
+     */
+    public synchronized int editBillById(Conta bill) {
+        // Open Database
+        mDataBase = mDatabaseHelper.getWritableDatabase();
+
+        int rowAffected;
+        int id = bill.getId();
+
+        ContentValues cv = createContentValues(bill);
+
+        rowAffected = mDataBase.update(TABLE_NAME, cv, "_id =" + id, null);
+
+        // Open Database
+        closeDb();
+
+        return rowAffected;
+    }
+
+    /**
+     * Encapsulate a bill in ContentValues to send to database
+     * 
+     * @param bill
+     * @return contentValues
+     */
+    private ContentValues createContentValues(Conta bill) {
+        ContentValues cv = new ContentValues();
+
+        cv.put("conta", bill.getNome());
+        cv.put("valor", bill.getValor());
+        cv.put("vencimento", bill.getVencimento());
+        cv.put("notificar", bill.getNotificar());
+        cv.put("codigo", bill.getCodigoBarra());
+        cv.put("status", bill.isPago());
+        cv.put("notificar", bill.getNotificar());
+
+        return cv;
     }
 }

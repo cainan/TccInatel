@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import br.com.tcc.R;
 import br.com.tcc.model.Conta;
@@ -49,7 +49,7 @@ public class ListBillAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LinearLayout rowLayout = (LinearLayout) LayoutInflater.from(mContext).inflate(
+        RelativeLayout rowLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(
                 R.layout.list_bill_item, parent, false);
 
         if (mBills != null && mBills.get(position) != null) {
@@ -70,9 +70,26 @@ public class ListBillAdapter extends BaseAdapter {
                 billValue.setText(mBills.get(position).getValor());
             }
 
+            View checkImage = (View) rowLayout.findViewById(R.id.check_image_layout);
+            if (checkImage != null && mBills.get(position).isPago()) {
+                checkImage.setVisibility(View.VISIBLE);
+            }
+
         }
 
         return rowLayout;
     }
 
+    /**
+     * Update Bills instace to update the listView
+     * 
+     * @param bills
+     */
+    public void updateAdapter(ArrayList<Conta> bills) {
+        if (mBills != null && bills != null) {
+            mBills.clear();
+            mBills = bills;
+        }
+        notifyDataSetChanged();
+    }
 }
