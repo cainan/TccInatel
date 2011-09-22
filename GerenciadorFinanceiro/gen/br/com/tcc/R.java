@@ -47,11 +47,11 @@ public final class R {
         public static final int bill_value_label=0x7f080016;
         public static final int btn_cancel=0x7f08002e;
         public static final int btn_cod_barra=0x7f08002c;
+        public static final int btn_delete_bill=0x7f08001f;
         public static final int btn_enviar=0x7f08002f;
         public static final int btn_location_gps=0x7f08001d;
         public static final int btn_register_bill=0x7f08001c;
         public static final int btn_show_bills=0x7f08001e;
-        public static final int button4=0x7f08001f;
         public static final int check_image=0x7f08001b;
         public static final int check_image_layout=0x7f08001a;
         public static final int checkbox=0x7f08002d;

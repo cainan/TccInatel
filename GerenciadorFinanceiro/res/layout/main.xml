@@ -32,8 +32,8 @@
         android:text="@string/visualisar_contas" />
 
     <Button
-        android:text="Button4"
-        android:id="@+id/button4"
+        android:text="TesteDelete"
+        android:id="@+id/btn_delete_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

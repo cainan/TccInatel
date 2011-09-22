@@ -93,6 +93,21 @@ public class DatabaseDelegate {
 
         return success;
     }
+    
+    public synchronized int deleteBill(Conta bill) {
+
+    	int success;
+    	
+        // Open Database
+        mDataBase = mDatabaseHelper.getWritableDatabase();
+
+        success = mDataBase.delete(TABLE_NAME, "_id =" + bill.getId(), null);
+
+        // Close database
+        closeDb();
+        
+        return success;
+    }
 
     /**
      * Read bills to pay from database
