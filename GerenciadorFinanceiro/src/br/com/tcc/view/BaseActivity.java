@@ -3,13 +3,23 @@ package br.com.tcc.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.widget.Toast;
+import br.com.tcc.R;
 import br.com.tcc.utils.GpsManager;
 
 public class BaseActivity extends Activity {
 
     /** Hold an instance of GPS manager */
     public GpsManager mGpsManager = new GpsManager();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // put some animations when transition from an activity to another
+        overridePendingTransition(R.anim.fade, R.anim.fade_out);
+    }
 
     /**
      * Turn the gps off

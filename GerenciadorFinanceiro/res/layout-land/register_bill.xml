@@ -31,9 +31,8 @@
                 android:id="@+id/name_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dip"
+                android:textAppearance="@style/LabelFont"
                 android:layout_marginBottom="2dip"
-                android:textStyle="bold"
                 android:textColor="@drawable/text_color_selector"
                 android:text="@string/name_txt" />
             <EditText
@@ -42,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:maxLength="40"
+                android:typeface="serif"
                 android:layout_marginBottom="5dip" />
 
             <!-- Valor e Vencimento -->
@@ -57,8 +57,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="16dip"
-                    android:textStyle="bold"
+                    android:textAppearance="@style/LabelFont"
                     android:textColor="@drawable/text_color_selector"
                     android:text="@string/valor_txt" />
 
@@ -67,8 +66,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="16dip"
-                    android:textStyle="bold"
+                    android:textAppearance="@style/LabelFont"
                     android:layout_marginBottom="3dip"
                     android:layout_marginLeft="10dip"
                     android:textColor="@drawable/text_color_selector"
@@ -90,6 +88,7 @@
                     android:maxLength="10"
                     android:layout_weight="1"
                     android:inputType="numberDecimal"
+                    android:typeface="serif"
                     android:layout_marginRight="10dip" />
 
                 <EditText
@@ -101,6 +100,7 @@
                     android:singleLine="true"
                     android:layout_weight="1"
                     android:maxLength="10"
+                    android:typeface="serif"
                     android:layout_marginLeft="10dip" />
 
             </LinearLayout>
@@ -111,9 +111,8 @@
                 android:id="@+id/notificar_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dip"
+                android:textAppearance="@style/LabelFont"
                 android:layout_marginBottom="2dip"
-                android:textStyle="bold"
                 android:textColor="@drawable/text_color_selector"
                 android:text="@string/notificar_txt" />
             <EditText
@@ -124,6 +123,7 @@
                 android:focusable="false"
                 android:singleLine="true"
                 android:maxLength="5"
+                android:typeface="serif"
                 android:layout_marginBottom="5dip" />
 
             <!-- Código de Barra -->
@@ -132,8 +132,7 @@
                 android:id="@+id/cod_barra_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dip"
-                android:textStyle="bold"
+                android:textAppearance="@style/LabelFont"
                 android:layout_marginBottom="3dip"
                 android:textColor="@drawable/text_color_selector"
                 android:text="@string/codigo_barra" />
@@ -150,12 +149,14 @@
                     android:layout_weight="5"
                     android:singleLine="true"
                     android:maxLength="40"
+                    android:typeface="serif"
                     android:inputType="numberDecimal" />
 
                 <Button
                     android:id="@+id/btn_cod_barra"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textAppearance="@style/ListTextFont"
                     android:layout_marginLeft="3dip"
                     android:layout_weight="1"
                     android:text="@string/inserir" />
@@ -176,8 +177,8 @@
                     android:textSize="16dip"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
-
                     android:textColor="@drawable/text_color_selector"
+                    android:button="@drawable/checkbox_selector"
                     android:text="@string/pagamento_realizado" />
 
             </RelativeLayout>
@@ -194,6 +195,7 @@
                     android:id="@+id/btn_cancel"
                     android:layout_width="110dip"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/ListTextFont"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="15dip"
                     android:text="@string/cancelar" />
@@ -202,6 +204,7 @@
                     android:id="@+id/btn_enviar"
                     android:layout_width="110dip"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/ListTextFont"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="15dip"
                     android:text="@string/gravar" />

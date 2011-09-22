@@ -15,12 +15,12 @@
     <string name="codigo_barra">Código de Barra:</string>
     <string name="inserir">Inserir</string>
     <string name="pagamento_realizado">Pagamento Realizado</string>
-    <string name="preencha_campos">Preencha todos os campos corretamente.</string>
+    <string name="preencha_campos">Preencha correatamente os campos marcados.</string>
     <string name="ok_txt">Ok</string>
     <string name="notificar_txt">Notificar às*:</string>
     <string name="procurar_banco">Procurar Banco</string>
-    <string name="marcar_como_pago">Marcar como pago</string>
-    <string name="lembrar_mais_tarde">Lembrar mais tarde</string>
+    <string name="marcar_como_pago">Marcar Como Pago</string>
+    <string name="lembrar_mais_tarde">Lembrar Mais Tarde</string>
     <string name="remarcar_data">Remarcar Data</string>
     <string name="barcode_scanner_unavailable">
     Para utilizar esse recurso é necessário possuir o "Barcode Scanner"
@@ -32,5 +32,10 @@
     <string name="codigo">Código: </string>
     <string name="valor">Valor: </string>
     <string name="share">Compartilhar Código de Barra</string>
+    <string name="remove_bill_alert">Você realmente deseja apagar esta conta?</string>
+    <string name="option_alert">O que você gostaria de fazer com esta conta?</string>
+    <string name="remove_txt">Remover</string>
+    <string name="today_bills">Contas de Hoje:</string>
+    
 
 </resources>

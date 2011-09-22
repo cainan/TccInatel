@@ -31,7 +31,6 @@
 
         <activity
             android:name=".view.RegisterBillActivity"
-            android:theme="@style/Theme.Transparent"
             android:screenOrientation="sensor">
         </activity>
 
@@ -41,7 +40,12 @@
         </activity>
 
         <activity
-            android:name=".view.ListBillActivity">
+            android:name=".view.EditDateActivity"
+            android:screenOrientation="sensor">
+        </activity>
+
+        <activity
+            android:name=".view.ListActivity">
         </activity>
 
         <activity

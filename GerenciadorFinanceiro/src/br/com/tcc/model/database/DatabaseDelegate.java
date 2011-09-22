@@ -93,11 +93,17 @@ public class DatabaseDelegate {
 
         return success;
     }
-    
+
+    /**
+     * Delete a bill from Database
+     * 
+     * @param bill
+     * @return
+     */
     public synchronized int deleteBill(Conta bill) {
 
-    	int success;
-    	
+        int success;
+
         // Open Database
         mDataBase = mDatabaseHelper.getWritableDatabase();
 
@@ -105,7 +111,7 @@ public class DatabaseDelegate {
 
         // Close database
         closeDb();
-        
+
         return success;
     }
 

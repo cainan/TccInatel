@@ -13,28 +13,40 @@
         android:layout_marginBottom="40px">
     </ImageView>
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/SubTitleFont"
+        android:layout_marginBottom="10dip"
+        android:text="@string/today_bills"
+        android:visibility="gone" />
+
+    <Gallery
+        android:id="@+id/gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dip"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btn_register_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/ListTextFont"
         android:text="@string/register_bill_txt" />
 
     <Button
         android:id="@+id/btn_location_gps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/ListTextFont"
         android:text="@string/location_gps" />
 
     <Button
         android:id="@+id/btn_show_bills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/ListTextFont"
         android:text="@string/visualisar_contas" />
-
-    <Button
-        android:text="TesteDelete"
-        android:id="@+id/btn_delete_bill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

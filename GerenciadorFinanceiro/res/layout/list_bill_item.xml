@@ -28,15 +28,14 @@
                 android:id="@+id/bill_name_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textAppearance="@style/ListSubTitleFont"
                 android:text="@string/name" />
 
             <TextView
                 android:id="@+id/bill_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textAppearance="@style/ListTextFont"
                 android:layout_marginLeft="3dip"
                 android:layout_toRightOf="@id/bill_name_label" />
 
@@ -51,15 +50,14 @@
                 android:id="@+id/bill_value_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textAppearance="@style/ListSubTitleFont"
                 android:text="@string/valor" />
 
             <TextView
                 android:id="@+id/bill_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textAppearance="@style/ListTextFont"
                 android:layout_marginLeft="3dip"
                 android:layout_toRightOf="@id/bill_value_label" />
 
@@ -73,15 +71,14 @@
                 android:id="@+id/bill_deadline_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textAppearance="@style/ListSubTitleFont"
                 android:text="@string/vencimento" />
 
             <TextView
                 android:id="@+id/bill_deadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textAppearance="@style/ListTextFont"
                 android:layout_marginLeft="3dip"
                 android:layout_toRightOf="@id/bill_deadline_label" />
 

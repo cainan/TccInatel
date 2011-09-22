@@ -14,7 +14,7 @@ public class EditBillActivity extends BillActivity {
     public static final String BILL_PARAM = "bill";
 
     /** Hold an instance of Bill */
-    private Conta mBill;
+    protected Conta mBill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

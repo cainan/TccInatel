@@ -30,7 +30,6 @@ public class GerenciadorFinanceiro extends BaseActivity {
         Button registerBill = (Button) findViewById(R.id.btn_register_bill);
         Button locationGps = (Button) findViewById(R.id.btn_location_gps);
         Button showBills = (Button) findViewById(R.id.btn_show_bills);
-        Button deleteBills = (Button) findViewById(R.id.btn_delete_bill);
 
         if (registerBill != null) {
             registerBill.setOnClickListener(new OnClickListener() {
@@ -38,8 +37,6 @@ public class GerenciadorFinanceiro extends BaseActivity {
                 @Override
                 public void onClick(View arg0) {
                     startActivity(new Intent(getApplicationContext(), RegisterBillActivity.class));
-                    overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
-                    // overridePendingTransition(R.anim.fade, R.anim.hold);
                 }
 
             });
@@ -60,26 +57,12 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
                 @Override
                 public void onClick(View arg0) {
-                    startActivity(new Intent(getApplicationContext(), ListBillActivity.class));
+                    startActivity(new Intent(getApplicationContext(), ListActivity.class));
                 }
 
             });
         }
-        
-        if (deleteBills != null) {
-            deleteBills.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View arg0) {
-//                	DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());
-//                    Conta bill = new Conta();
-//                    bill.setId(1);
-//                    db.deleteBill(bill);
-                }
-
-            });
-        }        
-        
     }
 
     /**

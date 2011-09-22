@@ -132,7 +132,8 @@ public class ScheduleService extends Service {
         itt.putExtra(NotificationActivity.BILL_PARAMETER, conta);
 
         // Configure PendingIntent
-        PendingIntent pendingItt = PendingIntent.getActivity(context, id, itt, 0);
+        PendingIntent pendingItt = PendingIntent.getActivity(context, id, itt,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Set notification event
         notification.setLatestEventInfo(context, notificationTitle, message, pendingItt);

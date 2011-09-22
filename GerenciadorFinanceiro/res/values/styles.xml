@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme"
-        parent="android:Theme">
-    </style>
-
-    <style
-        name="Theme.Transparent">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@drawable/transparent_background</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:colorForeground">#fff</item>
-    </style>
     
     <style name="Theme.NotificationDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="SubTitleFontWhite" parent="@android:style/TextAppearance.Medium">
+    <style name="SubTitleFont" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:typeface">monospace</item>
+        <item name="android:typeface">serif</item>
     </style>
     
-    <style name="FontWhite" parent="@android:style/TextAppearance.Medium">
+    <style name="Font" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:typeface">serif</item>
+    </style>
+    
+    <style name="LabelFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">serif</item>
+    </style>
+    
+    <style name="ListSubTitleFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">serif</item>
+    </style>
+    
+    <style name="ListTextFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:typeface">serif</item>
     </style>

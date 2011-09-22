@@ -6,6 +6,9 @@ import br.com.tcc.model.database.DatabaseDelegate;
 
 public class RegisterBillActivity extends BillActivity {
 
+    /**
+     * Just send the bill to DataBase
+     */
     @Override
     void sendToDB(Conta bill) {
         DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());

@@ -10,9 +10,7 @@ package br.com.tcc;
 public final class R {
     public static final class anim {
         public static final int fade=0x7f040000;
-        public static final int hold=0x7f040001;
-        public static final int zoom_enter=0x7f040002;
-        public static final int zoom_exit=0x7f040003;
+        public static final int fade_out=0x7f040001;
     }
     public static final class attr {
     }
@@ -24,75 +22,82 @@ public final class R {
     public static final class drawable {
         public static final int about=0x7f020000;
         public static final int android=0x7f020001;
-        public static final int check=0x7f020002;
-        public static final int divider=0x7f020003;
-        public static final int exit=0x7f020004;
-        public static final int fundo2=0x7f020005;
-        public static final int fundo_dialog=0x7f020006;
-        public static final int icon=0x7f020007;
-        public static final int text_color_selector=0x7f020008;
-        public static final int thumb_image=0x7f020009;
-        public static final int titulo=0x7f02000a;
-        public static final int transparent_background=0x7f02000b;
+        public static final int btn_check_off=0x7f020002;
+        public static final int btn_check_on=0x7f020003;
+        public static final int check=0x7f020004;
+        public static final int checkbox_selector=0x7f020005;
+        public static final int divider=0x7f020006;
+        public static final int exit=0x7f020007;
+        public static final int fundo2=0x7f020008;
+        public static final int fundo_dialog=0x7f020009;
+        public static final int icon=0x7f02000a;
+        public static final int text_color_selector=0x7f02000b;
+        public static final int thumb_image=0x7f02000c;
+        public static final int titulo=0x7f02000d;
+        public static final int transparent_background=0x7f02000e;
     }
     public static final class id {
+        public static final int barcode_btn_layout=0x7f080011;
         public static final int barcode_layout=0x7f08000a;
         public static final int bill=0x7f080005;
-        public static final int bill_deadline=0x7f080019;
-        public static final int bill_deadline_label=0x7f080018;
+        public static final int bill_deadline=0x7f08001c;
+        public static final int bill_deadline_label=0x7f08001b;
         public static final int bill_label=0x7f080004;
-        public static final int bill_name=0x7f080015;
-        public static final int bill_name_label=0x7f080014;
-        public static final int bill_value=0x7f080017;
-        public static final int bill_value_label=0x7f080016;
-        public static final int btn_cancel=0x7f08002e;
-        public static final int btn_cod_barra=0x7f08002c;
-        public static final int btn_delete_bill=0x7f08001f;
-        public static final int btn_enviar=0x7f08002f;
-        public static final int btn_location_gps=0x7f08001d;
-        public static final int btn_register_bill=0x7f08001c;
-        public static final int btn_show_bills=0x7f08001e;
-        public static final int check_image=0x7f08001b;
-        public static final int check_image_layout=0x7f08001a;
-        public static final int checkbox=0x7f08002d;
-        public static final int cod_barra_edit=0x7f08002b;
-        public static final int cod_barra_label=0x7f08002a;
+        public static final int bill_name=0x7f080018;
+        public static final int bill_name_label=0x7f080017;
+        public static final int bill_value=0x7f08001a;
+        public static final int bill_value_label=0x7f080019;
+        public static final int btn_cancel=0x7f080031;
+        public static final int btn_cod_barra=0x7f08002f;
+        public static final int btn_enviar=0x7f080032;
+        public static final int btn_location_gps=0x7f080021;
+        public static final int btn_register_bill=0x7f080020;
+        public static final int btn_show_bills=0x7f080022;
+        public static final int check_image=0x7f08001e;
+        public static final int check_image_layout=0x7f08001d;
+        public static final int checkbox=0x7f080030;
+        public static final int cod_barra_edit=0x7f08002e;
+        public static final int cod_barra_label=0x7f08002d;
         public static final int code=0x7f08000c;
         public static final int code_label=0x7f08000b;
-        public static final int exit=0x7f080021;
+        public static final int day_date=0x7f080014;
+        public static final int exit=0x7f080024;
+        public static final int gallery=0x7f08001f;
         public static final int image1=0x7f080001;
         public static final int imageView1=0x7f080003;
         public static final int layout_root=0x7f080000;
-        public static final int listview=0x7f080012;
+        public static final int listview=0x7f080015;
         public static final int mark_as_payed=0x7f08000e;
-        public static final int name_edit=0x7f080023;
-        public static final int name_label=0x7f080022;
-        public static final int notificar_edit=0x7f080029;
-        public static final int notificar_label=0x7f080028;
+        public static final int name=0x7f080013;
+        public static final int name_edit=0x7f080026;
+        public static final int name_label=0x7f080025;
+        public static final int notificar_edit=0x7f08002c;
+        public static final int notificar_label=0x7f08002b;
         public static final int pay=0x7f080009;
         public static final int pay_label=0x7f080008;
         public static final int remark=0x7f080010;
         public static final int remind_later=0x7f08000d;
         public static final int search_bank=0x7f08000f;
-        public static final int share=0x7f080011;
-        public static final int sobre=0x7f080020;
+        public static final int share=0x7f080012;
+        public static final int sobre=0x7f080023;
         public static final int text=0x7f080002;
-        public static final int thumb_image=0x7f080013;
-        public static final int valor_edit=0x7f080026;
-        public static final int valor_label=0x7f080024;
+        public static final int thumb_image=0x7f080016;
+        public static final int valor_edit=0x7f080029;
+        public static final int valor_label=0x7f080027;
         public static final int value=0x7f080007;
         public static final int value_label=0x7f080006;
-        public static final int vencimento_edit=0x7f080027;
-        public static final int vencimento_label=0x7f080025;
+        public static final int vencimento_edit=0x7f08002a;
+        public static final int vencimento_label=0x7f080028;
     }
     public static final class layout {
         public static final int about_dialog=0x7f030000;
         public static final int decision_view=0x7f030001;
-        public static final int list_bill=0x7f030002;
-        public static final int list_bill_item=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int menu=0x7f030005;
-        public static final int register_bill=0x7f030006;
+        public static final int gallery_item=0x7f030002;
+        public static final int list_bill=0x7f030003;
+        public static final int list_bill_item=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int menu=0x7f030006;
+        public static final int register_bill=0x7f030007;
     }
     public static final class string {
         public static final int about_txt=0x7f060003;
@@ -113,13 +118,17 @@ public final class R {
         public static final int name_txt=0x7f060006;
         public static final int notificar_txt=0x7f060011;
         public static final int ok_txt=0x7f060010;
+        public static final int option_alert=0x7f06001f;
         public static final int pagamento_realizado=0x7f06000e;
         public static final int preencha_campos=0x7f06000f;
         public static final int procurar_banco=0x7f060012;
         public static final int register_bill_txt=0x7f060004;
         public static final int remarcar_data=0x7f060015;
+        public static final int remove_bill_alert=0x7f06001e;
+        public static final int remove_txt=0x7f060020;
         public static final int share=0x7f06001d;
         public static final int sobre=0x7f060002;
+        public static final int today_bills=0x7f060021;
         public static final int valor=0x7f06001c;
         public static final int valor_txt=0x7f060008;
         public static final int vencimento=0x7f06001a;
@@ -127,10 +136,11 @@ public final class R {
         public static final int visualisar_contas=0x7f060018;
     }
     public static final class style {
-        public static final int FontWhite=0x7f070004;
-        public static final int SubTitleFontWhite=0x7f070003;
-        public static final int Theme=0x7f070000;
-        public static final int Theme_NotificationDialog=0x7f070002;
-        public static final int Theme_Transparent=0x7f070001;
+        public static final int Font=0x7f070002;
+        public static final int LabelFont=0x7f070003;
+        public static final int ListSubTitleFont=0x7f070004;
+        public static final int ListTextFont=0x7f070005;
+        public static final int SubTitleFont=0x7f070001;
+        public static final int Theme_NotificationDialog=0x7f070000;
     }
 }

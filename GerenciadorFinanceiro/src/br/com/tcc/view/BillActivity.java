@@ -175,21 +175,28 @@ public abstract class BillActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                if (validateFields()) {
-                    makeBillObject();
-                } else {
-                    showDialog(INCOMPLETE_FIELD_DIALOG_ID);
-                }
+                submitAction();
             }
 
         });
     }
 
     /**
+     * Action made after a submit button be pressed
+     */
+    protected void submitAction() {
+        if (validateFields()) {
+            sendToDB(makeBillObject());
+        } else {
+            showDialog(INCOMPLETE_FIELD_DIALOG_ID);
+        }
+    }
+
+    /**
      * Test if Barcode scanner is already installed in the phone, if it is, launch it. If not, ask
      * the user to install it.
      */
-    protected void callBarcodeScanner() {
+    private void callBarcodeScanner() {
         boolean isInstalled = false;
 
         PackageManager packageManager = getPackageManager();
@@ -216,7 +223,7 @@ public abstract class BillActivity extends BaseActivity {
     /**
      * Make a Bill object from the fields at screen
      */
-    private void makeBillObject() {
+    private Conta makeBillObject() {
         Conta conta = new Conta();
         conta.setNome(mNameEdit.getText().toString());
         conta.setValor(mValueEdit.getText().toString());
@@ -229,7 +236,7 @@ public abstract class BillActivity extends BaseActivity {
 
         conta.setPago(mPayed.isChecked());
 
-        sendToDB(conta);
+        return conta;
     }
 
     /**
@@ -242,7 +249,7 @@ public abstract class BillActivity extends BaseActivity {
      * 
      * @return true if is valid, false otherwise.
      */
-    private boolean validateFields() {
+    protected boolean validateFields() {
 
         boolean valid = true;
 

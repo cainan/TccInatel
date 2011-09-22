@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -80,7 +79,9 @@ public class NotificationActivity extends BaseActivity {
 
             @Override
             public void onClick(View arg0) {
-                // TODO Remarcar a data da conta
+                Intent itt = new Intent(getApplicationContext(), EditDateActivity.class);
+                itt.putExtra(EditBillActivity.BILL_PARAM, mBill);
+                startActivityForResult(itt, 0);
             }
 
         });
@@ -126,14 +127,19 @@ public class NotificationActivity extends BaseActivity {
             payField.setText(mBill.getVencimento());
         }
 
+        View barcodeBtnLayout = (View) findViewById(R.id.barcode_btn_layout);
+        View barcodeLayout = (View) findViewById(R.id.barcode_layout);
         if (mBill.getCodigoBarra() != null) {
-            View barcodeLayout = (View) findViewById(R.id.barcode_layout);
             if (barcodeLayout != null) {
                 barcodeLayout.setVisibility(View.VISIBLE);
                 TextView barcode = (TextView) findViewById(R.id.code);
                 if (barcode != null) {
                     barcode.setText(mBill.getCodigoBarra());
                 }
+            }
+
+            if (barcodeBtnLayout != null) {
+                barcodeBtnLayout.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -143,16 +149,28 @@ public class NotificationActivity extends BaseActivity {
      */
     private void remindMeLater() {
         GregorianCalendar deadLine = new GregorianCalendar();
-        Log.d("log", "deadline: " + deadLine.getTime());
+        deadLine.add(GregorianCalendar.MINUTE, 15);
 
-        deadLine.roll(GregorianCalendar.MINUTE, 15);
-        Log.d("log", "deadline: " + deadLine.getTime());
+        int hour = deadLine.getTime().getHours();
+        int minute = deadLine.getTime().getMinutes();
+        mBill.setNotificar(hour + ":" + minute);
 
-        // TODO Quando a hora for, por exemplo, 10:50, se aumentarmos 15 min, a hora ficará 10:05.
-        // Precisa-se de uma lógica para incrementar esses 15 minutos da forma certa.
+        DatabaseDelegate.getInstance(getApplicationContext()).editBillById(mBill);
 
         finish();
 
+    }
+
+    /**
+     * Receive new date if the user changed it
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            mBill = (Conta) data.getSerializableExtra(EditDateActivity.RESULT_PARAM);
+            initView();
+        }
     }
 
     /**
