@@ -5,6 +5,12 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="LabelEmptyList" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
     <style name="SubTitleFont" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>

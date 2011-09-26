@@ -8,7 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Gallery;
 import br.com.tcc.R;
+import br.com.tcc.adapter.GalleryAdapter;
+import br.com.tcc.model.database.DatabaseDelegate;
 import br.com.tcc.service.ScheduleService;
 import br.com.tcc.utils.Alerts;
 
@@ -27,6 +30,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
      * Initialize the view
      */
     private void initView() {
+
         Button registerBill = (Button) findViewById(R.id.btn_register_bill);
         Button locationGps = (Button) findViewById(R.id.btn_location_gps);
         Button showBills = (Button) findViewById(R.id.btn_show_bills);
@@ -62,6 +66,39 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
             });
         }
+
+        Button barGraphBtn = (Button) findViewById(R.id.btn_bar_graphs);
+        if (barGraphBtn != null) {
+            barGraphBtn.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    Intent result = new Intent();
+                    result.setClass(getApplicationContext(), GraphActivity.class);
+                    result.putExtra("com.java4less.rchart.samples.file", "barChart3D.txt");
+                    startActivity(result);
+                }
+
+            });
+        }
+
+        Button pieGraphBtn = (Button) findViewById(R.id.btn_pie_graphs);
+        if (pieGraphBtn != null) {
+            pieGraphBtn.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    Intent result = new Intent();
+                    result.setClass(getApplicationContext(), GraphActivity.class);
+                    result.putExtra("com.java4less.rchart.samples.file", "pieChart3D.txt");
+                    startActivity(result);
+                }
+
+            });
+        }
+
+        Gallery gallery = (Gallery) findViewById(R.id.gallery);
+        gallery.setAdapter(new GalleryAdapter(this, DatabaseDelegate.getInstance(this).readAll()));
 
     }
 

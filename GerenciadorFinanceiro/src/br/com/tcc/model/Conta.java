@@ -18,6 +18,9 @@ public class Conta implements Serializable {
     private String mCodigoBarra;
     private String mNotificar;
     private boolean mPago;
+    private String mDia;
+    private String mMes;
+    private String mAno;
 
     public void setId(int mId) {
         this.mId = mId;
@@ -107,5 +110,29 @@ public class Conta implements Serializable {
         } catch (Exception e) {
         }
         return value;
+    }
+
+    public void setAno(String mAno) {
+        this.mAno = mAno;
+    }
+
+    public String getAno() {
+        return mAno;
+    }
+
+    public void setMes(String mMes) {
+        this.mMes = mMes;
+    }
+
+    public String getMes() {
+        return mMes;
+    }
+
+    public void setDia(String mDia) {
+        this.mDia = mDia;
+    }
+
+    public String getDia() {
+        return mDia;
     }
 }

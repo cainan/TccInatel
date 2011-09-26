@@ -14,8 +14,12 @@ import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import br.com.tcc.R;
 import br.com.tcc.adapter.ListBillAdapter;
 import br.com.tcc.model.Conta;
@@ -30,6 +34,7 @@ public class ListActivity extends BaseActivity {
     /** Hold the Bills */
     protected ArrayList<Conta> mBills;
 
+    /** Hold The selected Bill */
     private Conta mSelectedBill;
 
     /** Hold the ListAdapter */
@@ -38,14 +43,46 @@ public class ListActivity extends BaseActivity {
     /** Hold the ListView */
     private ListView mListView;
 
+    /** Hold the Empty message */
+    private TextView mEmptyList;
+
+    /** Hold the Spinner */
+    private Spinner mSpinner;
+
+    /** Hold the Database Instance */
+    private DatabaseDelegate mDatabase;
+
+    /** Hold the position of the spinner selected item */
+    private int mPosition = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_bill);
 
-        mBills = DatabaseDelegate.getInstance(getApplicationContext()).ReadAll();
+        // getting a database instance
+        mDatabase = DatabaseDelegate.getInstance(getApplicationContext());
+        mBills = mDatabase.readAll();
 
-        initView();
+        // getting some fields
+        mListView = (ListView) findViewById(R.id.listview);
+        mEmptyList = (TextView) findViewById(R.id.empty_list);
+        mSpinner = (Spinner) findViewById(R.id.spinner);
+
+        if (mBills.size() > 0) {
+            initView();
+        } else {
+            emptyList();
+        }
+    }
+
+    /**
+     * Show a message telling that there is not bills registered
+     */
+    private void emptyList() {
+        mListView.setVisibility(View.GONE);
+        mEmptyList.setVisibility(View.VISIBLE);
+        mSpinner.setVisibility(View.GONE);
     }
 
     /**
@@ -53,8 +90,11 @@ public class ListActivity extends BaseActivity {
      */
     private void initView() {
 
+        mListView.setVisibility(View.VISIBLE);
+        mEmptyList.setVisibility(View.GONE);
+        mSpinner.setVisibility(View.VISIBLE);
+
         mListAdapter = new ListBillAdapter(getApplicationContext(), mBills);
-        mListView = (ListView) findViewById(R.id.listview);
         mListView.setAdapter(mListAdapter);
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -64,6 +104,25 @@ public class ListActivity extends BaseActivity {
                 if (mSelectedBill != null) {
                     showDialog(OPTIONS_DIALOG);
                 }
+            }
+
+        });
+
+        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_item,
+                android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+        mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setPosition(position);
+                updateList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
             }
 
         });
@@ -172,8 +231,22 @@ public class ListActivity extends BaseActivity {
      * Read database to update the listView
      */
     protected void updateList() {
-        mBills = DatabaseDelegate.getInstance(getApplicationContext()).ReadAll();
+        updateData();
         mListAdapter.updateAdapter(mBills);
+    }
+
+    /**
+     * Read the database to get the updated info
+     */
+    private void updateData() {
+        switch (getPosition()) {
+        case 0:
+            mBills = mDatabase.readAll();
+            break;
+        case 1:
+            mBills = mDatabase.readBillToPay();
+            break;
+        }
     }
 
     /**
@@ -181,18 +254,26 @@ public class ListActivity extends BaseActivity {
      */
     @Override
     protected void onResume() {
-        updateList();
+        if (mBills.size() > 0) {
+            updateList();
+        }
         super.onResume();
     }
 
     /**
-     * Setting adapter, OnItemClickListener to null to avoid OOM
+     * Set a variable with the selected position of the spinner
      */
-    @Override
-    protected void onDestroy() {
-        mListView.setOnItemClickListener(null);
-        mListView.setAdapter(null);
-        mListAdapter = null;
-        super.onDestroy();
+    private void setPosition(int mPosition) {
+        this.mPosition = mPosition;
     }
+
+    /**
+     * Get the position of the selected item of the spinner
+     * 
+     * @return position
+     */
+    private int getPosition() {
+        return mPosition;
+    }
+
 }

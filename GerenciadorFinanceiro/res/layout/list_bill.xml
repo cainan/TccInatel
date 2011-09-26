@@ -12,12 +12,39 @@
         android:src="@drawable/titulo"
         android:layout_alignParentTop="true" />
 
-    <ListView
-        android:id="@+id/listview"
+    <TextView
+        android:id="@+id/empty_list"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/LabelEmptyList"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/empty_list" />
+
+    <RelativeLayout
+        android:id="@+id/list_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/imageView1"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@drawable/divider" />
+        android:layout_above="@+id/spinner">
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/imageView1"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/divider" />
+
+    </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="160dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:prompt="@string/spinner_prompt" />
 
 </RelativeLayout>

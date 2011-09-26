@@ -36,6 +36,8 @@
     <string name="option_alert">O que você gostaria de fazer com esta conta?</string>
     <string name="remove_txt">Remover</string>
     <string name="today_bills">Contas de Hoje:</string>
+    <string name="empty_list">Nenhuma Conta foi \nCadastrada.</string>
+    <string name="spinner_prompt">Listar:</string>
     
 
 </resources>

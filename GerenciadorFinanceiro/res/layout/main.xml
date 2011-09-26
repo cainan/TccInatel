@@ -22,11 +22,10 @@
         android:visibility="gone" />
 
     <Gallery
-        android:id="@+id/gallery"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dip"
-        android:visibility="gone" />
+        android:spacing="30dip"
+        android:id="@+id/gallery" />
 
     <Button
         android:id="@+id/btn_register_bill"
@@ -48,5 +47,19 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/ListTextFont"
         android:text="@string/visualisar_contas" />
+
+    <Button
+        android:id="@+id/btn_bar_graphs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/ListTextFont"
+        android:text="Grafico Barras" />
+
+    <Button
+        android:id="@+id/btn_pie_graphs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/ListTextFont"
+        android:text="Grafico Pizza" />
 
 </LinearLayout>

@@ -67,7 +67,7 @@ public class ScheduleService extends Service {
      */
     private void searchBillsToPay() {
         DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());
-        ArrayList<Conta> arrayConta = db.ReadBillToPay();
+        ArrayList<Conta> arrayConta = db.readBillToPay();
 
         GregorianCalendar today = new GregorianCalendar();
         String[] date;
