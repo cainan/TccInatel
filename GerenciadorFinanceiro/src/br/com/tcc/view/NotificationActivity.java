@@ -85,14 +85,34 @@ public class NotificationActivity extends BaseActivity {
             }
 
         });
+        
+        Button btnSms = (Button) findViewById(R.id.send_sms);
+        btnSms.setOnClickListener(new OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                
+            	if(smsBody()!= null){           		
+            		Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            		sendIntent.putExtra("sms_body", smsBody()); 
+            		sendIntent.setType("vnd.android-dir/mms-sms");
+            		startActivity(sendIntent);
+            		finish();
+            	}
+            	else
+            		finish();
+            }
+
+        });
+        
+        /*
         Button shareBtn = (Button) findViewById(R.id.share);
         shareBtn.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                String text = "c�digo: " + mBill.getCodigoBarra();
+                String text = "código: " + mBill.getCodigoBarra();
 
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
@@ -111,6 +131,7 @@ public class NotificationActivity extends BaseActivity {
             }
 
         });
+        */
 
         TextView billField = (TextView) findViewById(R.id.bill);
         if (billField != null && mBill.getNome() != null) {
@@ -159,6 +180,24 @@ public class NotificationActivity extends BaseActivity {
 
         finish();
 
+    }
+    
+    private String smsBody(){
+    	String msg = "Pagamento de Conta";
+   	
+    	if (mBill.getNome() != null) {
+            msg = msg + "\n\nConta: "+ mBill.getNome();
+        }
+    	if (mBill.getValor() != null) {
+    		msg = msg + "\nValor: "+ mBill.getValor();
+        }
+    	if (mBill.getVencimento() != null) {
+    		msg = msg + "\nVencimento: "+ mBill.getVencimento();
+        }
+    	if (mBill.getCodigoBarra() != null) {
+    		msg = msg + "\nCódigo de barra: "+ mBill.getCodigoBarra();
+        }
+    	return msg;
     }
 
     /**
