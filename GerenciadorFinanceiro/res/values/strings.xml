@@ -38,6 +38,7 @@
     <string name="today_bills">Contas de Hoje:</string>
     <string name="empty_list">Nenhuma Conta foi \nCadastrada.</string>
     <string name="spinner_prompt">Listar:</string>
+    <string name="sms">SMS</string>
     
 
 </resources>
