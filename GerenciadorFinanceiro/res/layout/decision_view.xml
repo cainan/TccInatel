@@ -110,7 +110,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="25dip">
+        android:paddingTop="10dip">
 
         <Button
             android:id="@+id/remind_later"
@@ -137,7 +137,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dip">
+        android:paddingTop="10dip">
 
         <Button
             android:id="@+id/search_bank"
@@ -163,12 +163,9 @@
 
     <RelativeLayout
         android:id="@+id/barcode_btn_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:visibility="gone"
-        android:paddingTop="15dip"
-        android:paddingBottom="7dip">
+        android:paddingTop="10dip">
 
         <Button
             android:id="@+id/send_sms"
@@ -177,7 +174,7 @@
             android:textAppearance="@style/ListTextFont"
             android:lines="2"
             android:layout_alignParentLeft="true" 
-            android:layout_marginLeft="70px"          
+            android:layout_marginLeft="3dip"          
             android:text="@string/sms" />
 
     </RelativeLayout>
