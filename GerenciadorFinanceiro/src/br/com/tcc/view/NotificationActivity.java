@@ -150,6 +150,9 @@ public class NotificationActivity extends BaseActivity {
 
         View barcodeBtnLayout = (View) findViewById(R.id.barcode_btn_layout);
         View barcodeLayout = (View) findViewById(R.id.barcode_layout);
+        barcodeBtnLayout.setVisibility(View.VISIBLE);
+        barcodeLayout.setVisibility(View.VISIBLE);
+        /*
         if (mBill.getCodigoBarra() != null) {
             if (barcodeLayout != null) {
                 barcodeLayout.setVisibility(View.VISIBLE);
@@ -163,6 +166,7 @@ public class NotificationActivity extends BaseActivity {
                 barcodeBtnLayout.setVisibility(View.VISIBLE);
             }
         }
+        */
     }
 
     /**
