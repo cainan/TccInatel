@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import br.com.tcc.R;
 import br.com.tcc.model.Conta;
 
@@ -40,6 +41,22 @@ public class GalleryAdapter extends BaseAdapter {
 
         RelativeLayout rowLayout = (RelativeLayout) mInflater.inflate(R.layout.gallery_item,
                 parent, false);
+
+        TextView name = (TextView) rowLayout.findViewById(R.id.name);
+        TextView date = (TextView) rowLayout.findViewById(R.id.day_date);
+        TextView value = (TextView) rowLayout.findViewById(R.id.value);
+
+        if (name != null) {
+            name.setText(mBills.get(position).getNome());
+        }
+
+        if (date != null) {
+            date.setText(mBills.get(position).getVencimento());
+        }
+        
+        if (value != null) {
+            value.setText("R$ " + mBills.get(position).getValor());
+        }
 
         return rowLayout;
     }

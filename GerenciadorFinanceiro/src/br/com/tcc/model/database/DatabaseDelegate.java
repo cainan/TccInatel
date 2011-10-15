@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import br.com.tcc.model.Conta;
 
 public class DatabaseDelegate {
@@ -163,7 +164,7 @@ public class DatabaseDelegate {
     }
 
     /**
-     * Read the bills the current month
+     * Read the bills of current month
      * 
      * @param month
      * @param year
@@ -188,6 +189,62 @@ public class DatabaseDelegate {
         // SELECT * FROM CONTAS WHERE MES = ? AND ANO = ?
         Cursor cursor = mDataBase.query(TABLE_NAME, allColumns, where, null, null, null, "dia");
 
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                conta = new Conta();
+                conta.setId(cursor.getInt(0));
+                conta.setNome(cursor.getString(1));
+                conta.setValor(cursor.getString(2));
+                conta.setVencimento(cursor.getString(3));
+                conta.setNotificar(cursor.getString(4));
+                conta.setCodigoBarra(cursor.getString(5));
+                if (cursor.getInt(6) == 0) {
+                    conta.setPago(false);
+                } else {
+                    conta.setPago(false);
+                }
+                conta.setDia(cursor.getString(7));
+                conta.setMes(cursor.getString(8));
+                conta.setAno(cursor.getString(9));
+
+                arrayConta.add(conta);
+                cursor.moveToNext();
+            }
+        }
+
+        // Open Database
+        closeDb();
+
+        return arrayConta;
+
+    }
+    
+    /**
+     * Read the bills of current day
+     * 
+     * @param month
+     * @param year
+     */
+    public synchronized ArrayList<Conta> readDailyBills(int day, int month, int year) {
+        // Open Database
+        mDataBase = mDatabaseHelper.getWritableDatabase();
+
+        ArrayList<Conta> arrayConta = new ArrayList<Conta>();
+        Conta conta;
+
+        String[] allColumns = { "_id", "conta", "valor", "vencimento", "notificar", "codigo",
+                "status", "dia", "mes", "ano" };
+
+        String where;
+        where = "dia=" + day + " and mes=" + month + " and ano=" + year + " and status=" + "0";
+        Log.d("log", "dia " + day);
+        Log.d("log", "mes " + month);
+        Log.d("log", "ano " + year);
+
+        // SELECT * FROM CONTAS WHERE MES = ? AND ANO = ?
+        Cursor cursor = mDataBase.query(TABLE_NAME, allColumns, where, null, null, null, "dia");
+        Log.d("log", "cursor: " + cursor.getCount());
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             for (int i = 0; i < cursor.getCount(); i++) {
