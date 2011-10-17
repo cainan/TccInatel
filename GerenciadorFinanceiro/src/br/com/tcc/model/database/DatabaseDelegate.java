@@ -162,6 +162,55 @@ public class DatabaseDelegate {
 
         return arrayConta;
     }
+    
+    
+    /**
+     * Read bills paid from database
+     * 
+     * @return Conta
+     */
+    public synchronized ArrayList<Conta> readBillPaid() {
+        // Open Database
+        mDataBase = mDatabaseHelper.getWritableDatabase();
+
+        ArrayList<Conta> arrayConta = new ArrayList<Conta>();
+        Conta conta;
+
+        String[] allColumns = { "_id", "conta", "valor", "vencimento", "notificar", "codigo",
+                "status" };
+
+        // SELECT * FROM CONTAS WHERE STATUS = 0
+        Cursor cursor = mDataBase.query(TABLE_NAME, allColumns, "status = 1", null, null, null,
+                null);
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+                conta = new Conta();
+                conta.setId(cursor.getInt(0));
+                conta.setNome(cursor.getString(1));
+                conta.setValor(cursor.getString(2));
+                conta.setVencimento(cursor.getString(3));
+                conta.setNotificar(cursor.getString(4));
+                conta.setCodigoBarra(cursor.getString(5));
+                if (cursor.getInt(6) == 0) {
+                    conta.setPago(false);
+                } else {
+                    conta.setPago(false);
+                }
+
+                arrayConta.add(conta);
+                cursor.moveToNext();
+            }
+        }
+
+        // Open Database
+        closeDb();
+
+        return arrayConta;
+    }
+    
 
     /**
      * Read the bills of current month
