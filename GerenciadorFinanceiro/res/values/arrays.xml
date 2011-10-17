@@ -4,8 +4,8 @@
     <string-array
         name="spinner_item">
         <item>TODAS</item>
-        <item>A Pagar </item>
-        <item> </item>
+        <item>A Pagar</item>
+        <item>Pagas</item>
         <item> </item>
         <item> </item>
     </string-array>
