@@ -246,6 +246,9 @@ public class ListActivity extends BaseActivity {
         case 1:
             mBills = mDatabase.readBillToPay();
             break;
+        case 2:
+        	mBills = mDatabase.readBillPaid();
+        	break;
         }
     }
 
