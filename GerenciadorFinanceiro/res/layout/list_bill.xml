@@ -44,7 +44,24 @@
         android:layout_width="160dip"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:prompt="@string/spinner_prompt" />
+        
+    <TextView 
+    	android:id="@+id/text_total"
+    	android:layout_width="120dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="18dp"
+        android:layout_alignParentRight="true"
+        android:text="Total:" />    
+     
+    <TextView 
+    	android:id="@+id/text_totalizador"
+    	android:layout_width="70dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="18dp"
+        android:layout_alignParentRight="true" />    
 
 </RelativeLayout>
