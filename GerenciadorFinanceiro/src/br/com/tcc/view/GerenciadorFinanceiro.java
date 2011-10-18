@@ -27,6 +27,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
         initView();
     }
+    
 
     /**
      * Initialize the view
@@ -98,6 +99,20 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
             });
         }
+        
+        
+        Button pieGraphBtn2 = (Button) findViewById(R.id.btn_pie_graphs_2);
+        if (pieGraphBtn2 != null) {
+            pieGraphBtn2.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {                	                	
+                	Intent intent = new GraphPieChart().execute(getApplicationContext());
+                	startActivity(intent);
+                }
+
+            });
+        }
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -119,7 +134,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
         inflater.inflate(R.layout.menu, menu);
         return true;
     }
-
+    
     /**
      * Set actions of menu's options
      */
