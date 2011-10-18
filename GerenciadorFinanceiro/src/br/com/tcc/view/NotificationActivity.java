@@ -1,6 +1,8 @@
 package br.com.tcc.view;
 
+import java.text.NumberFormat;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -140,7 +142,9 @@ public class NotificationActivity extends BaseActivity {
 
         TextView valueField = (TextView) findViewById(R.id.value);
         if (valueField != null && mBill.getValor() != null) {
-            valueField.setText(mBill.getValor());
+        	float valor = Float.parseFloat(mBill.getValor());
+        	NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+            valueField.setText(nf.format(valor));
         }
 
         TextView payField = (TextView) findViewById(R.id.pay);
