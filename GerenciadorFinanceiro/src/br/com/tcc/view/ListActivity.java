@@ -1,6 +1,8 @@
 package br.com.tcc.view;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,12 +16,12 @@ import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import br.com.tcc.R;
 import br.com.tcc.adapter.ListBillAdapter;
 import br.com.tcc.model.Conta;
@@ -45,6 +47,9 @@ public class ListActivity extends BaseActivity {
 
     /** Hold the Empty message */
     private TextView mEmptyList;
+    
+    /** Hold the TextView Total */
+    private TextView mTextTotal;
 
     /** Hold the Spinner */
     private Spinner mSpinner;
@@ -68,6 +73,7 @@ public class ListActivity extends BaseActivity {
         mListView = (ListView) findViewById(R.id.listview);
         mEmptyList = (TextView) findViewById(R.id.empty_list);
         mSpinner = (Spinner) findViewById(R.id.spinner);
+        mTextTotal = (TextView) findViewById(R.id.text_totalizador);
 
         if (mBills.size() > 0) {
             initView();
@@ -83,6 +89,7 @@ public class ListActivity extends BaseActivity {
         mListView.setVisibility(View.GONE);
         mEmptyList.setVisibility(View.VISIBLE);
         mSpinner.setVisibility(View.GONE);
+        mTextTotal.setVisibility(View.GONE);
     }
 
     /**
@@ -93,9 +100,11 @@ public class ListActivity extends BaseActivity {
         mListView.setVisibility(View.VISIBLE);
         mEmptyList.setVisibility(View.GONE);
         mSpinner.setVisibility(View.VISIBLE);
+        mTextTotal.setVisibility(View.VISIBLE);
 
         mListAdapter = new ListBillAdapter(getApplicationContext(), mBills);
         mListView.setAdapter(mListAdapter);
+        calculateTotal(mBills);
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -242,12 +251,15 @@ public class ListActivity extends BaseActivity {
         switch (getPosition()) {
         case 0:
             mBills = mDatabase.readAll();
+            calculateTotal(mBills);
             break;
         case 1:
             mBills = mDatabase.readBillToPay();
+            calculateTotal(mBills);
             break;
         case 2:
         	mBills = mDatabase.readBillPaid();
+        	calculateTotal(mBills);
         	break;
         }
     }
@@ -262,6 +274,21 @@ public class ListActivity extends BaseActivity {
         }
         super.onResume();
     }
+    
+    /**
+     * Calculate Total value
+     * 
+     * @param bills
+     */
+    public void calculateTotal(ArrayList<Conta> bills) {
+    	float total = 0;
+    	for (Conta bill : bills) {
+    		total += Float.parseFloat(bill.getValor());
+    	}
+    	NumberFormat nf = NumberFormat.getCurrencyInstance((new Locale ("pt", "BR")));
+    	mTextTotal.setText(nf.format(total));
+    }
+
 
     /**
      * Set a variable with the selected position of the spinner
