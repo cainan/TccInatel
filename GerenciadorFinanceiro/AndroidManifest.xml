@@ -57,6 +57,8 @@
             android:name=".view.NotificationActivity"
             android:theme="@style/Theme.NotificationDialog">
         </activity>
+        
+        <activity android:name="org.achartengine.GraphicalActivity" />
 
         <service
             android:name=".service.ScheduleService" />
@@ -78,4 +80,6 @@
 
     <uses-permission
         android:name="android.permission.VIBRATE"></uses-permission>
+        
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
