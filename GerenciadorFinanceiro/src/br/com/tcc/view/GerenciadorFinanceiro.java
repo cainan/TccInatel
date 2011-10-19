@@ -84,12 +84,13 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
             });
         }
-
+        
+        /*
         Button pieGraphBtn = (Button) findViewById(R.id.btn_pie_graphs);
         if (pieGraphBtn != null) {
             pieGraphBtn.setOnClickListener(new OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(View arg0) {
                     Intent result = new Intent();
                     result.setClass(getApplicationContext(), GraphActivity.class);
@@ -99,7 +100,20 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
             });
         }
+        */
         
+        Button pieGraphBtnBar = (Button) findViewById(R.id.btn_pie_graphs_bar);
+        if (pieGraphBtnBar != null) {
+            pieGraphBtnBar.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                	Intent intent = new GraphBarChart().execute(getApplicationContext());
+                	startActivity(intent);
+                }
+
+            });
+        }
         
         Button pieGraphBtn2 = (Button) findViewById(R.id.btn_pie_graphs_2);
         if (pieGraphBtn2 != null) {
