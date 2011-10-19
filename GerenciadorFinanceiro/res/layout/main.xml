@@ -55,12 +55,21 @@
         android:textAppearance="@style/ListTextFont"
         android:text="Grafico Barras" />
 
+    <!-- 
     <Button
         android:id="@+id/btn_pie_graphs"
         android:layout_width="150dip"
         android:layout_height="wrap_content"
         android:textAppearance="@style/ListTextFont"
         android:text="Grafico Pizza" />
+     -->
+     
+     <Button
+        android:id="@+id/btn_pie_graphs_bar"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/ListTextFont"
+        android:text="Grafico Barra 2" />
         
     <Button
         android:id="@+id/btn_pie_graphs_2"
