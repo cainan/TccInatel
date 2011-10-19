@@ -60,9 +60,24 @@ public class GraphBarChart extends AbstractDemoChart{
 	        12.5, 0, 2000, Color.GRAY, Color.LTGRAY);
 	    renderer.getSeriesRendererAt(0).setDisplayChartValues(true);
 	    //renderer.getSeriesRendererAt(1).setDisplayChartValues(true);
-	    renderer.setXLabels(12);
-	    renderer.setYLabels(10);
-	    renderer.setXLabelsAlign(Align.LEFT);
+	    renderer.setXLabels(0);
+	    renderer.setYLabels(4);
+	    
+	    renderer.addXTextLabel(1, "Jan");
+	    renderer.addXTextLabel(2, "Fev");
+	    renderer.addXTextLabel(3, "Mar");
+	    renderer.addXTextLabel(4, "Abr");
+	    renderer.addXTextLabel(5, "Mai");
+	    renderer.addXTextLabel(6, "Jun");
+	    renderer.addXTextLabel(7, "Jul");
+	    renderer.addXTextLabel(8, "Ago");
+	    renderer.addXTextLabel(9, "Set");
+	    renderer.addXTextLabel(10, "Out");
+	    renderer.addXTextLabel(11, "Nov");
+	    renderer.addXTextLabel(12, "Dez");
+	    
+	    
+	    renderer.setXLabelsAlign(Align.CENTER);
 	    renderer.setYLabelsAlign(Align.LEFT);
 	    renderer.setPanEnabled(true, false);
 	    // renderer.setZoomEnabled(false);
