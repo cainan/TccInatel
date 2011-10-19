@@ -197,7 +197,9 @@ public class NotificationActivity extends BaseActivity {
             msg = msg + "\n\nConta: "+ mBill.getNome();
         }
     	if (mBill.getValor() != null) {
-    		msg = msg + "\nValor: "+ mBill.getValor();
+    		float valor = Float.parseFloat(mBill.getValor());
+    		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+    		msg = msg + "\nValor: "+ nf.format(valor);
         }
     	if (mBill.getVencimento() != null) {
     		msg = msg + "\nVencimento: "+ mBill.getVencimento();
