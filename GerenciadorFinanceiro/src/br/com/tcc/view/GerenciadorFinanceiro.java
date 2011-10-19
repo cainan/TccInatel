@@ -19,6 +19,13 @@ import br.com.tcc.utils.Alerts;
 
 public class GerenciadorFinanceiro extends BaseActivity {
 
+    private GalleryAdapter mGalleryAdapter;
+    private DatabaseDelegate mDatabase;
+    private Calendar mCalendar;
+    private int mDay;
+    private int mMonth;
+    private int mYear;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +34,6 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
         initView();
     }
-    
 
     /**
      * Initialize the view
@@ -84,59 +90,68 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
             });
         }
-        
+
         /*
-        Button pieGraphBtn = (Button) findViewById(R.id.btn_pie_graphs);
-        if (pieGraphBtn != null) {
-            pieGraphBtn.setOnClickListener(new OnClickListener() {
+         * Button pieGraphBtn = (Button) findViewById(R.id.btn_pie_graphs); if (pieGraphBtn != null)
+         * { pieGraphBtn.setOnClickListener(new OnClickListener() {
+         * 
+         * //@Override public void onClick(View arg0) { Intent result = new Intent();
+         * result.setClass(getApplicationContext(), GraphActivity.class);
+         * result.putExtra("com.java4less.rchart.samples.file", "pieChart3D.txt");
+         * startActivity(result); }
+         * 
+         * }); }
+         */
 
-                //@Override
-                public void onClick(View arg0) {
-                    Intent result = new Intent();
-                    result.setClass(getApplicationContext(), GraphActivity.class);
-                    result.putExtra("com.java4less.rchart.samples.file", "pieChart3D.txt");
-                    startActivity(result);
-                }
-
-            });
-        }
-        */
-        
         Button pieGraphBtnBar = (Button) findViewById(R.id.btn_pie_graphs_bar);
         if (pieGraphBtnBar != null) {
             pieGraphBtnBar.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
-                	Intent intent = new GraphBarChart().execute(getApplicationContext());
-                	startActivity(intent);
+                    Intent intent = new GraphBarChart().execute(getApplicationContext());
+                    startActivity(intent);
                 }
 
             });
         }
-        
+
         Button pieGraphBtn2 = (Button) findViewById(R.id.btn_pie_graphs_2);
         if (pieGraphBtn2 != null) {
             pieGraphBtn2.setOnClickListener(new OnClickListener() {
 
                 @Override
-                public void onClick(View arg0) {                	                	
-                	Intent intent = new GraphPieChart().execute(getApplicationContext());
-                	startActivity(intent);
+                public void onClick(View arg0) {
+                    Intent intent = new GraphPieChart().execute(getApplicationContext());
+                    startActivity(intent);
                 }
 
             });
         }
 
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1; 
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        Gallery gallery = (Gallery) findViewById(R.id.gallery);
-        gallery.setAdapter(new GalleryAdapter(this, DatabaseDelegate.getInstance(this).readDailyBills(day, month, year)));
         
+        Gallery gallery = (Gallery) findViewById(R.id.gallery);
+        mDatabase = DatabaseDelegate.getInstance(this);
+        updateDate();
+        mGalleryAdapter = new GalleryAdapter(this, mDatabase.readDailyBills(mDay, mMonth, mYear));
+        if (mGalleryAdapter != null && gallery != null) {
+            gallery.setAdapter(mGalleryAdapter);
+        }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateDate();
+        mGalleryAdapter.updateAdapter(mDatabase.readDailyBills(mDay, mMonth, mYear));
+    }
+
+    private void updateDate() {
+        mCalendar = Calendar.getInstance();
+        mYear = mCalendar.get(Calendar.YEAR);
+        mMonth = mCalendar.get(Calendar.MONTH) + 1;
+        mDay = mCalendar.get(Calendar.DAY_OF_MONTH);
     }
 
     /**
@@ -148,7 +163,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
         inflater.inflate(R.layout.menu, menu);
         return true;
     }
-    
+
     /**
      * Set actions of menu's options
      */

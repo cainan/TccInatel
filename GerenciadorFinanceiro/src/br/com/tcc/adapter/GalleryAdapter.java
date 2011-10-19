@@ -64,4 +64,17 @@ public class GalleryAdapter extends BaseAdapter {
 
         return rowLayout;
     }
+    
+    /**
+     * Update Bills instance to update the gallery
+     * 
+     * @param bills
+     */
+    public void updateAdapter(ArrayList<Conta> bills) {
+        if (mBills != null && bills != null) {
+            mBills.clear();
+            mBills = bills;
+        }
+        notifyDataSetChanged();
+    }
 }
