@@ -177,6 +177,17 @@
             android:layout_marginLeft="3dip"          
             android:text="@string/sms" />
 
+        <Button
+            android:id="@+id/send_email"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dip"
+            android:textAppearance="@style/ListTextFont"
+            android:lines="2"
+            android:text="@string/email" />
+
+
     </RelativeLayout>
 
 </LinearLayout>
