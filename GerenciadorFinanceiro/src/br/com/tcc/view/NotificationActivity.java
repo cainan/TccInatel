@@ -114,7 +114,7 @@ public class NotificationActivity extends BaseActivity {
             public void onClick(View v) {
                 
             	if(smsBody()!= null){           		
-            		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);                   
+            		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
                             emailIntent.setType("plain/text");
 	                   emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, smsBody());
             
