@@ -39,6 +39,6 @@
     <string name="empty_list">Nenhuma Conta foi \nCadastrada.</string>
     <string name="spinner_prompt">Listar:</string>
     <string name="sms">Enviar por SMS</string>
-    
+    <string name="email">Enviar por E-mail</string>
 
 </resources>
