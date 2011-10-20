@@ -107,6 +107,26 @@ public class NotificationActivity extends BaseActivity {
 
         });
         
+        Button btnEmail = (Button) findViewById(R.id.send_email);
+        btnEmail.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                
+            	if(smsBody()!= null){           		
+            		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);                   
+                            emailIntent.setType("plain/text");
+	                   emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, smsBody());
+            
+                            startActivity(Intent.createChooser(emailIntent, "Send mail..."));                        		                   finish();
+            	}
+            	else
+            		finish();
+            }
+
+        });
+
+        
         /*
         Button shareBtn = (Button) findViewById(R.id.share);
         shareBtn.setOnClickListener(new OnClickListener() {
