@@ -47,7 +47,7 @@ public class ListActivity extends BaseActivity {
 
     /** Hold the Empty message */
     private TextView mEmptyList;
-    
+
     /** Hold the TextView Total */
     private TextView mTextTotal;
 
@@ -86,10 +86,21 @@ public class ListActivity extends BaseActivity {
      * Show a message telling that there is not bills registered
      */
     private void emptyList() {
-        mListView.setVisibility(View.GONE);
-        mEmptyList.setVisibility(View.VISIBLE);
-        mSpinner.setVisibility(View.GONE);
-        mTextTotal.setVisibility(View.GONE);
+        if (mListView != null) {
+            mListView.setVisibility(View.GONE);
+        }
+
+        if (mEmptyList != null) {
+            mEmptyList.setVisibility(View.VISIBLE);
+        }
+
+        if (mSpinner != null) {
+            mSpinner.setVisibility(View.GONE);
+        }
+
+        if (mTextTotal != null) {
+            mTextTotal.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -97,10 +108,40 @@ public class ListActivity extends BaseActivity {
      */
     private void initView() {
 
-        mListView.setVisibility(View.VISIBLE);
-        mEmptyList.setVisibility(View.GONE);
-        mSpinner.setVisibility(View.VISIBLE);
-        mTextTotal.setVisibility(View.VISIBLE);
+        if (mListView != null) {
+            mListView.setVisibility(View.VISIBLE);
+        }
+
+        if (mEmptyList != null) {
+            mEmptyList.setVisibility(View.GONE);
+        }
+
+        if (mSpinner != null) {
+            mSpinner.setVisibility(View.VISIBLE);
+
+            ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_item,
+                    android.R.layout.simple_spinner_item);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mSpinner.setAdapter(adapter);
+            mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    setPosition(position);
+                    updateList();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> arg0) {
+                }
+
+            });
+        }
+
+        if (mTextTotal != null) {
+            mTextTotal.setVisibility(View.VISIBLE);
+        }
 
         mListAdapter = new ListBillAdapter(getApplicationContext(), mBills);
         mListView.setAdapter(mListAdapter);
@@ -113,25 +154,6 @@ public class ListActivity extends BaseActivity {
                 if (mSelectedBill != null) {
                     showDialog(OPTIONS_DIALOG);
                 }
-            }
-
-        });
-
-        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_item,
-                android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
-        mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setPosition(position);
-                updateList();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
             }
 
         });
@@ -258,9 +280,9 @@ public class ListActivity extends BaseActivity {
             calculateTotal(mBills);
             break;
         case 2:
-        	mBills = mDatabase.readBillPaid();
-        	calculateTotal(mBills);
-        	break;
+            mBills = mDatabase.readBillPaid();
+            calculateTotal(mBills);
+            break;
         }
     }
 
@@ -274,21 +296,23 @@ public class ListActivity extends BaseActivity {
         }
         super.onResume();
     }
-    
+
     /**
      * Calculate Total value
      * 
      * @param bills
      */
     public void calculateTotal(ArrayList<Conta> bills) {
-    	float total = 0;
-    	for (Conta bill : bills) {
-    		total += Float.parseFloat(bill.getValor());
-    	}
-    	NumberFormat nf = NumberFormat.getCurrencyInstance((new Locale ("pt", "BR")));
-    	mTextTotal.setText(nf.format(total));
-    }
+        float total = 0;
+        for (Conta bill : bills) {
+            total += Float.parseFloat(bill.getValor());
+        }
+        NumberFormat nf = NumberFormat.getCurrencyInstance((new Locale("pt", "BR")));
 
+        if (mTextTotal != null) {
+            mTextTotal.setText(nf.format(total));
+        }
+    }
 
     /**
      * Set a variable with the selected position of the spinner
