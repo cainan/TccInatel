@@ -50,6 +50,9 @@ public class ListActivity extends BaseActivity {
 
     /** Hold the TextView Total */
     private TextView mTextTotal;
+    
+    /** Hold the TextView Total label */
+    private TextView mTextTotalLabel;
 
     /** Hold the Spinner */
     private Spinner mSpinner;
@@ -72,6 +75,7 @@ public class ListActivity extends BaseActivity {
         // getting some fields
         mListView = (ListView) findViewById(R.id.listview);
         mEmptyList = (TextView) findViewById(R.id.empty_list);
+        mTextTotalLabel = (TextView) findViewById(R.id.text_total);
         mSpinner = (Spinner) findViewById(R.id.spinner);
         mTextTotal = (TextView) findViewById(R.id.text_totalizador);
 
@@ -101,6 +105,10 @@ public class ListActivity extends BaseActivity {
         if (mTextTotal != null) {
             mTextTotal.setVisibility(View.GONE);
         }
+        
+        if(mTextTotalLabel != null) {
+            mTextTotalLabel.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -116,6 +124,10 @@ public class ListActivity extends BaseActivity {
             mEmptyList.setVisibility(View.GONE);
         }
 
+        if(mTextTotalLabel != null) {
+            mTextTotalLabel.setVisibility(View.VISIBLE);
+        }
+        
         if (mSpinner != null) {
             mSpinner.setVisibility(View.VISIBLE);
 
