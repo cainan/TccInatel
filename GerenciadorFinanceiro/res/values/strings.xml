@@ -41,6 +41,10 @@
     <string name="sms">Enviar por SMS</string>
     <string name="email">Enviar por E-mail</string>
     <string name="total_txt">Total: </string>
+    <string name="select_bill">Selecionar Contas</string>
+    <string name="select_contacts">Selecionar Contatos</string>
+    <string name="enviar_sms">Enviar por SMS</string>
+    <string name="enviar_email">Enviar por E-mail</string>
 
 </resources>
 
