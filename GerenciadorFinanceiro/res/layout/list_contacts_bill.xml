@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fundo2">
+
+    <ImageView
+        android:id="@+id/imageView1_contact"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/titulo"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/empty_list_contact"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/LabelEmptyList"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/empty_list" />
+
+    <RelativeLayout
+        android:id="@+id/list_layout_contact"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/imageView1_contact"
+        android:layout_above="@+id/button_contact">
+
+        <ListView
+            android:id="@+id/listview_contact"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/imageView1_contact"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/divider" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_contact"
+        android:layout_width="160dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/select_contacts" /> 
+
+</RelativeLayout>
