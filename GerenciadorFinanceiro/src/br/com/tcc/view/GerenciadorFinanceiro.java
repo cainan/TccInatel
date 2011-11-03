@@ -59,7 +59,8 @@ public class GerenciadorFinanceiro extends BaseActivity {
             locationGps.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    searchBanksGmaps();
+                    //searchBanksGmaps();
+                	startActivity(new Intent(getApplicationContext(), ListBillPaidActivity.class));
                 }
 
             });
