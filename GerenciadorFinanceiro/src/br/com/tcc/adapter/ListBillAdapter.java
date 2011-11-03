@@ -1,6 +1,8 @@
 package br.com.tcc.adapter;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -67,7 +69,9 @@ public class ListBillAdapter extends BaseAdapter {
 
             TextView billValue = (TextView) rowLayout.findViewById(R.id.bill_value);
             if (billValue != null) {
-                billValue.setText(mBills.get(position).getValor());
+            	float valor = Float.parseFloat(mBills.get(position).getValor());
+            	NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+                billValue.setText(nf.format(valor));
             }
 
             View checkImage = (View) rowLayout.findViewById(R.id.check_image_layout);
