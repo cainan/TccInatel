@@ -80,6 +80,7 @@
             android:name="com.google.android.maps" />
     </application>
 
+	
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission
