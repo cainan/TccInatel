@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fundo_principal">
+    android:background="@drawable/fundo2">
 
     <ImageView
         android:layout_height="wrap_content"
@@ -17,56 +17,58 @@
 
     <Button
         android:id="@+id/btn_register_bill"
-        android:layout_width="wrap_content"
+        android:layout_width="150dip"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView1"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="9dip"
         android:layout_marginTop="80dip"
-        android:background="@drawable/register_selector" />
+        android:text="Cadastrar conta" />
 
     <Button
         android:id="@+id/btn_show_bills"
-        android:layout_width="wrap_content"
+        android:layout_width="150dip"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_register_bill"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dip"
-        android:background="@drawable/view_selector" />
+        android:layout_below="@id/imageView1"
+        android:layout_toRightOf="@id/btn_register_bill"
+        android:layout_marginTop="80dip"
+        android:text="Visualizar contas" />
 
     <Button
         android:id="@+id/btn_location_gps"
-        android:layout_width="wrap_content"
+        android:layout_width="150dip"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_show_bills"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_register_bill"
+        android:layout_marginLeft="9dip"
         android:layout_marginTop="22dip"
-        android:background="@drawable/bank_selector" />
+        android:text="Localizar bancos" />
 
-    <Button
-        android:id="@+id/btn_pie_graphs_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_location_gps"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dip"
-        android:background="@drawable/graph_selector" />
         
      <Button
         android:id="@+id/btn_notify_contacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_pie_graphs_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dip"
-        android:background="@drawable/notify_selector" />   
-
-    <Button
-        android:id="@+id/btn_pie_graphs_2"
         android:layout_width="150dip"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/ListTextFont"
-        android:text="Grafico Pizza"
-        android:visibility="gone" />
+        android:layout_below="@id/btn_show_bills"
+        android:layout_toRightOf="@id/btn_location_gps"
+        android:layout_marginTop="22dip"
+        android:text="Notificar contas" />
+        
+     <Button
+        android:id="@+id/btn_pie_graphs_bar"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_location_gps"
+        android:layout_marginLeft="9dip"
+        android:layout_marginTop="22dip"
+        android:text="Gráfico de barras" />      
+
+    <Button
+        android:id="@+id/btn_pie_graphs_bar2"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_notify_contacts"
+        android:layout_toRightOf="@id/btn_pie_graphs_bar"
+        android:layout_marginTop="22dip"
+        android:text="Gráfico de pizza" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -80,7 +82,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:spacing="30dip"
-        android:id="@+id/gallery"
+        android:id="@+id/gallery" 
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dip" />
 
