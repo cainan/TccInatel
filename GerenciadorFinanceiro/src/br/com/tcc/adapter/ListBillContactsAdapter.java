@@ -27,6 +27,7 @@ public class ListBillContactsAdapter extends BaseAdapter {
 	private Contacts mContactSelected;
 
 	private List<Contacts> listContactSelected = new ArrayList<Contacts>();
+	
 
 	/**
 	 * The class' constructor
@@ -115,5 +116,6 @@ public class ListBillContactsAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+	
 }
 
