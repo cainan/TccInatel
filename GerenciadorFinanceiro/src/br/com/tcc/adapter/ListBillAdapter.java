@@ -22,6 +22,7 @@ public class ListBillAdapter extends BaseAdapter {
     /** Hold an array of Bills to be shown in listView */
     private ArrayList<Conta> mBills;
 
+
     /**
      * The class' constructor
      * 
@@ -96,4 +97,5 @@ public class ListBillAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+	
 }
