@@ -133,7 +133,7 @@ public abstract class BillActivity extends BaseActivity {
         mNotifyEdit = (EditText) findViewById(R.id.notificar_edit);
         mNotifyEdit.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 showDialog(TIME_DIALOG_ID);
             }
@@ -143,7 +143,7 @@ public abstract class BillActivity extends BaseActivity {
         mPaymentDateEdit = (EditText) findViewById(R.id.vencimento_edit);
         mPaymentDateEdit.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 showDialog(DATE_DIALOG_ID);
             }
@@ -153,7 +153,7 @@ public abstract class BillActivity extends BaseActivity {
         Button cancelBtn = (Button) findViewById(R.id.btn_cancel);
         cancelBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 finish();
             }
@@ -163,7 +163,7 @@ public abstract class BillActivity extends BaseActivity {
         Button barCodeBtn = (Button) findViewById(R.id.btn_cod_barra);
         barCodeBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 callBarcodeScanner();
             }
@@ -173,7 +173,7 @@ public abstract class BillActivity extends BaseActivity {
         Button submitBtn = (Button) findViewById(R.id.btn_enviar);
         submitBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View v) {
                 submitAction();
             }
@@ -331,7 +331,7 @@ public abstract class BillActivity extends BaseActivity {
             builder.setTitle(R.string.app_name).setMessage(R.string.preencha_campos);
             builder.setNeutralButton(R.string.ok_txt, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();
                 }
@@ -343,7 +343,7 @@ public abstract class BillActivity extends BaseActivity {
             builder.setTitle(R.string.app_name).setMessage(R.string.barcode_scanner_unavailable);
             builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
@@ -351,7 +351,7 @@ public abstract class BillActivity extends BaseActivity {
             });
             builder.setPositiveButton(R.string.instalar, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent goToMarket = new Intent(Intent.ACTION_VIEW).setData(Uri
                             .parse("market://details?id=com.google.zxing.client.android"));
@@ -403,7 +403,7 @@ public abstract class BillActivity extends BaseActivity {
      */
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
 
-        @Override
+        //@Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             mHour = hourOfDay;
             mMinute = minute;

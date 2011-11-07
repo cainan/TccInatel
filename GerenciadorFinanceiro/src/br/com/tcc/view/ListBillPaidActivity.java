@@ -167,9 +167,12 @@ public class ListBillPaidActivity extends BaseActivity {
         if (mBillsPaid.size() > 0) {
             updateList();
         }
-        if (mListBillAdapterPaid.getListBillSelected() != null && mListBillAdapterPaid.getListBillSelected().size() > 0) {
-        	mListBillAdapterPaid.getListBillSelected().clear();
+        if (mListBillAdapterPaid != null){
+        	if (mListBillAdapterPaid.getListBillSelected() != null && mListBillAdapterPaid.getListBillSelected().size() > 0) {
+            	mListBillAdapterPaid.getListBillSelected().clear();
+            }
         }
+        
         super.onResume();
     }
     

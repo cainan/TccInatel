@@ -43,11 +43,12 @@ public class GerenciadorFinanceiro extends BaseActivity {
         Button registerBill = (Button) findViewById(R.id.btn_register_bill);
         Button locationGps = (Button) findViewById(R.id.btn_location_gps);
         Button showBills = (Button) findViewById(R.id.btn_show_bills);
+        Button notifyContacts = (Button) findViewById(R.id.btn_notify_contacts);
 
         if (registerBill != null) {
             registerBill.setOnClickListener(new OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(View arg0) {
                     startActivity(new Intent(getApplicationContext(), RegisterBillActivity.class));
                 }
@@ -57,10 +58,9 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
         if (locationGps != null) {
             locationGps.setOnClickListener(new OnClickListener() {
-                @Override
+                //@Override
                 public void onClick(View arg0) {
-                    //searchBanksGmaps();
-                	startActivity(new Intent(getApplicationContext(), ListBillPaidActivity.class));
+                    searchBanksGmaps();
                 }
 
             });
@@ -69,7 +69,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
         if (showBills != null) {
             showBills.setOnClickListener(new OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(View arg0) {
                     startActivity(new Intent(getApplicationContext(), ListActivity.class));
                 }
@@ -81,7 +81,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
         if (pieGraphBtnBar != null) {
             pieGraphBtnBar.setOnClickListener(new OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(View arg0) {
                     Intent intent = new GraphBarChart().execute(getApplicationContext());
                     startActivity(intent);
@@ -94,10 +94,21 @@ public class GerenciadorFinanceiro extends BaseActivity {
         if (pieGraphBtn2 != null) {
             pieGraphBtn2.setOnClickListener(new OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(View arg0) {
                     Intent intent = new GraphPieChart().execute(getApplicationContext());
                     startActivity(intent);
+                }
+
+            });
+        }
+        
+        if (notifyContacts != null) {
+            notifyContacts.setOnClickListener(new OnClickListener() {
+
+                //@Override
+                public void onClick(View arg0) {
+                	startActivity(new Intent(getApplicationContext(), ListBillPaidActivity.class));
                 }
 
             });

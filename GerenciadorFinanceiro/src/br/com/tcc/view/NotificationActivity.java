@@ -48,7 +48,7 @@ public class NotificationActivity extends BaseActivity {
         Button searchBankBtn = (Button) findViewById(R.id.search_bank);
         searchBankBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 searchBanksGmaps();
             }
@@ -58,7 +58,7 @@ public class NotificationActivity extends BaseActivity {
         Button markAsPayedBtn = (Button) findViewById(R.id.mark_as_payed);
         markAsPayedBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View v) {
                 DatabaseDelegate.getInstance(getApplicationContext()).markAsPayed(mBillId);
                 finish();
@@ -69,7 +69,7 @@ public class NotificationActivity extends BaseActivity {
         Button remindLaterBtn = (Button) findViewById(R.id.remind_later);
         remindLaterBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 remindMeLater();
             }
@@ -79,7 +79,7 @@ public class NotificationActivity extends BaseActivity {
         Button remarkBtn = (Button) findViewById(R.id.remark);
         remarkBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View arg0) {
                 Intent itt = new Intent(getApplicationContext(), EditDateActivity.class);
                 itt.putExtra(EditBillActivity.BILL_PARAM, mBill);
@@ -91,7 +91,7 @@ public class NotificationActivity extends BaseActivity {
         Button btnSms = (Button) findViewById(R.id.send_sms);
         btnSms.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View v) {
                 
             	if(smsBody()!= null){           		
@@ -110,7 +110,7 @@ public class NotificationActivity extends BaseActivity {
         Button btnEmail = (Button) findViewById(R.id.send_email);
         btnEmail.setOnClickListener(new OnClickListener() {
 
-            @Override
+            //@Override
             public void onClick(View v) {
                 
             	if(smsBody()!= null){           		
