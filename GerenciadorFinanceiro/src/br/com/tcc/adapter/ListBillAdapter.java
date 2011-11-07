@@ -33,22 +33,22 @@ public class ListBillAdapter extends BaseAdapter {
         mBills = bills;
     }
 
-    @Override
+    //@Override
     public int getCount() {
         return mBills.size();
     }
 
-    @Override
+    //@Override
     public Object getItem(int position) {
         return mBills.get(position);
     }
 
-    @Override
+    //@Override
     public long getItemId(int position) {
         return position;
     }
 
-    @Override
+    //@Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         RelativeLayout rowLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(

@@ -40,22 +40,22 @@ public class ListBillPaidAdapter extends BaseAdapter {
         mBillsPaid = bills;
     }
 
-    @Override
+    //@Override
     public int getCount() {
         return mBillsPaid.size();
     }
 
-    @Override
+    //@Override
     public Object getItem(int position) {
         return mBillsPaid.get(position);
     }
 
-    @Override
+    //@Override
     public long getItemId(int position) {
         return position;
     }
 
-   @Override
+   //@Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         RelativeLayout rowLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(
