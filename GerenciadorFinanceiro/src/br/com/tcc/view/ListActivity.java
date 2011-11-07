@@ -138,13 +138,13 @@ public class ListActivity extends BaseActivity {
             mSpinner.setAdapter(adapter);
             mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-                @Override
+                //@Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     setPosition(position);
                     updateList();
                 }
 
-                @Override
+                //@Override
                 public void onNothingSelected(AdapterView<?> arg0) {
                 }
 
@@ -160,7 +160,7 @@ public class ListActivity extends BaseActivity {
         calculateTotal(mBills);
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
-            @Override
+            //@Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mSelectedBill = mBills.get(position);
                 if (mSelectedBill != null) {
@@ -186,7 +186,7 @@ public class ListActivity extends BaseActivity {
             builder.setTitle(R.string.app_name).setMessage(R.string.option_alert);
             builder.setNeutralButton(R.string.remove_txt, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                     showDialog(REMOVE_BILL_DIALOG);
@@ -196,7 +196,7 @@ public class ListActivity extends BaseActivity {
 
             builder.setPositiveButton(R.string.alterar, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
 
                     Intent itt = new Intent(getApplicationContext(), EditBillActivity.class);
@@ -209,7 +209,7 @@ public class ListActivity extends BaseActivity {
 
             builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
@@ -222,7 +222,7 @@ public class ListActivity extends BaseActivity {
             builder.setTitle(R.string.app_name).setMessage(R.string.remove_bill_alert);
             builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
@@ -231,7 +231,7 @@ public class ListActivity extends BaseActivity {
 
             builder.setPositiveButton(R.string.ok_txt, new DialogInterface.OnClickListener() {
 
-                @Override
+                //@Override
                 public void onClick(DialogInterface dialog, int which) {
                     DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());
                     db.deleteBill(mSelectedBill);
