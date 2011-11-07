@@ -28,6 +28,7 @@ public class ListBillPaidAdapter extends BaseAdapter {
     private Conta mBillSelected;
     
     private List<Conta> listBillSelected = new ArrayList<Conta>();
+	
 
     /**
      * The class' constructor
@@ -131,4 +132,5 @@ public class ListBillPaidAdapter extends BaseAdapter {
 		this.listBillSelected = listBillSelected;
 	}
     
+	
 }
