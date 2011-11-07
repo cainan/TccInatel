@@ -90,7 +90,7 @@ public class GerenciadorFinanceiro extends BaseActivity {
             });
         }
 
-        Button pieGraphBtn2 = (Button) findViewById(R.id.btn_pie_graphs_2);
+        Button pieGraphBtn2 = (Button) findViewById(R.id.btn_pie_graphs_bar2);
         if (pieGraphBtn2 != null) {
             pieGraphBtn2.setOnClickListener(new OnClickListener() {
 
@@ -172,5 +172,4 @@ public class GerenciadorFinanceiro extends BaseActivity {
 
         }
     }
-
 }
