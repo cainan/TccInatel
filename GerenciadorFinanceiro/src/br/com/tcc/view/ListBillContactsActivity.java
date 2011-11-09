@@ -3,9 +3,11 @@ package br.com.tcc.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -23,62 +25,64 @@ import android.widget.TextView;
 import br.com.tcc.R;
 import br.com.tcc.adapter.ListBillContactsAdapter;
 import br.com.tcc.model.Contacts;
-import br.com.tcc.model.database.DatabaseDelegate;
 
 public class ListBillContactsActivity extends BaseActivity {
 
-    /** Hold the ListView */
-    private ListView mListViewContacts;
-    
-    /** Hold the ListAdapter */
-    public ListBillContactsAdapter mListContactAdapter;
-    
-    /** Hold the Contacts List */
-    private List<Contacts> mContacts = new ArrayList<Contacts>();
+	/** Hold the ListView */
+	private ListView mListViewContacts;
 
-    /** Hold the Empty message */
-    private TextView mEmptyListContacts;
-    
-    /** Hold the Email Contacts Selected */
-    private String emailContactsSelected;
-    
-    /** Hold the Phone Number Contacts Selected */
-    private String phoneContactsSelected;
-    
-    /** Hold the Names Contacts Selected */
-    private String nameContactsSelected;
-    
-    /** Hold the Bills Selected */
-    private String billsSelected;
+	/** Hold the ListAdapter */
+	public ListBillContactsAdapter mListContactAdapter;
 
-    /** Hold the Button */
-    private Button mButton;
-    
-    /** Hold the Database Instance */
-    private DatabaseDelegate mDatabase;
+	/** Hold the Contacts List */
+	public List<Contacts> mContacts = new ArrayList<Contacts>();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_contacts_bill);
+	/** Hold the Empty message */
+	private TextView mEmptyListContacts;
 
-        mListViewContacts = (ListView) findViewById(R.id.listview_contact);
-        mEmptyListContacts = (TextView) findViewById(R.id.empty_list_contact);
-        mButton = (Button) findViewById(R.id.button_contact);
-        
-        Intent i = getIntent();
-        billsSelected = i.getStringExtra("bills");
-        
-        mContacts = getListContacts();
-        
-        mButton.setOnClickListener(new OnClickListener() {
-			
+	/** Hold the Email Contacts Selected */
+	private String emailContactsSelected;
+
+	/** Hold the Phone Number Contacts Selected */
+	private String phoneContactsSelected;
+
+	/** Hold the Names Contacts Selected */
+	private String nameContactsSelected;
+
+	/** Hold the Bills Selected */
+	private String billsSelected;
+
+	/** Hold the Button */
+	private Button mButton;
+
+	ProgressDialog dialog;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list_contacts_bill);
+
+		dialog = new ProgressDialog(this);
+		new ContactsList().execute();
+
+		mListViewContacts = (ListView) findViewById(R.id.listview_contact);
+		mEmptyListContacts = (TextView) findViewById(R.id.empty_list_contact);
+		mButton = (Button) findViewById(R.id.button_contact);
+
+		Intent i = getIntent();
+		billsSelected = i.getStringExtra("bills");
+
+
+		//mContacts = getListContacts();
+
+		mButton.setOnClickListener(new OnClickListener() {
+
 			public void onClick(View v) {
 				if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
 					emailContactsSelected = getEmails(mListContactAdapter.getListContactSelected());
 					phoneContactsSelected = getPhoneNumbers(mListContactAdapter.getListContactSelected());
 					nameContactsSelected = getNames(mListContactAdapter.getListContactSelected());
-					
+
 					Intent i = new Intent();
 					i.putExtra("bills", billsSelected);
 					i.putExtra("names", nameContactsSelected);
@@ -89,113 +93,109 @@ public class ListBillContactsActivity extends BaseActivity {
 				}
 			}
 		});
-        
 
-        if (mContacts.size() > 0) {
-            initView();
-        } else {
-            emptyList();
-        }
-    }
 
-    /**
-     * Show a message telling that there is not bills registered
-     */
-    private void emptyList() {
-        if (mListViewContacts != null) {
-            mListViewContacts.setVisibility(View.GONE);
-        }
 
-        if (mEmptyListContacts != null) {
-            mEmptyListContacts.setVisibility(View.VISIBLE);
-        }
+	}
 
-        if (mButton != null) {
-            mButton.setVisibility(View.GONE);
-        }
-    }
+	/**
+	 * Show a message telling that there is not bills registered
+	 */
+	private void emptyList() {
+		if (mListViewContacts != null) {
+			mListViewContacts.setVisibility(View.GONE);
+		}
 
-    /**
-     * Initializing the view
-     */
-    private void initView() {
+		if (mEmptyListContacts != null) {
+			mEmptyListContacts.setVisibility(View.VISIBLE);
+		}
 
-        if (mListViewContacts != null) {
-            mListViewContacts.setVisibility(View.VISIBLE);
-        }
+		if (mButton != null) {
+			mButton.setVisibility(View.GONE);
+		}
+	}
 
-        if (mEmptyListContacts != null) {
-            mEmptyListContacts.setVisibility(View.GONE);
-        }
-        
-        if (mButton != null) {
-            mButton.setVisibility(View.VISIBLE);
-        }
+	/**
+	 * Initializing the view
+	 */
+	private void initView() {
 
-        mListContactAdapter = new ListBillContactsAdapter(getApplicationContext(), mContacts);
+		if (mListViewContacts != null) {
+			mListViewContacts.setVisibility(View.VISIBLE);
+		}
+
+		if (mEmptyListContacts != null) {
+			mEmptyListContacts.setVisibility(View.GONE);
+		}
+
+		if (mButton != null) {
+			mButton.setVisibility(View.VISIBLE);
+		}
+
+		mListContactAdapter = new ListBillContactsAdapter(getApplicationContext(), mContacts);
 		mListViewContacts.setAdapter(mListContactAdapter);       
 
-        setListAnimation();
-    }
+		setListAnimation();
+	}
 
-    /**
-     * Create a cascade animation when showing the list
-     */
-    private void setListAnimation() {
+	/**
+	 * Create a cascade animation when showing the list
+	 */
+	private void setListAnimation() {
 
-        AnimationSet set = new AnimationSet(true);
+		AnimationSet set = new AnimationSet(true);
 
-        Animation animation = new AlphaAnimation(0.0f, 1.0f);
-        animation.setDuration(110);
-        set.addAnimation(animation);
+		Animation animation = new AlphaAnimation(0.0f, 1.0f);
+		animation.setDuration(110);
+		set.addAnimation(animation);
 
-        animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -1.0f,
-                Animation.RELATIVE_TO_SELF, 0.0f);
-        animation.setDuration(160);
-        set.addAnimation(animation);
+		animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -1.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f);
+		animation.setDuration(160);
+		set.addAnimation(animation);
 
-        LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
-        mListViewContacts.setLayoutAnimation(controller);
+		LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
+		mListViewContacts.setLayoutAnimation(controller);
 
-    }  
-    
-    /**
-     * Read to update the listView
-     */
-    protected void updateList() {
-        updateData();
-        mListContactAdapter.updateAdapter(mContacts);
-    }
+	}  
 
-    /**
-     * Read the database to get the updated info
-     */
-    private void updateData() {
-        mContacts = getListContacts();
-    }
+	/**
+	 * Read to update the listView
+	 */
+	protected void updateList() {
+		updateData();
+		mListContactAdapter.updateAdapter(mContacts);
+	}
 
-    
-    /**
-     * Call clear list
-     */
-    @Override
-    protected void onResume() {
-    	if (mContacts.size() > 0) {
-            updateList();
-        }
-    	if (mListContactAdapter != null) {
-    		if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
-            	mListContactAdapter.getListContactSelected().clear();
-            }
-    	}
-        super.onResume();
-    }
+	/**
+	 * Read the database to get the updated info
+	 */
+	private void updateData() {
+		mContacts = getListContacts();
+	}
 
-    /**
-     * Return list of contacts
-     */
-    private List<Contacts> getListContacts() {
+
+	/**
+	 * Call clear list
+	 */
+	@Override
+	protected void onResume() {
+		if (mContacts.size() > 0) {
+			updateList();
+		}
+		if (mListContactAdapter != null) {
+			if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
+				mListContactAdapter.getListContactSelected().clear();
+			}
+		}
+		super.onResume();
+	}
+
+	/**
+	 * Return list of contacts
+	 */
+	private List<Contacts> getListContacts() {
 
 		List<Contacts> listContacts = new ArrayList<Contacts>();
 
@@ -220,7 +220,7 @@ public class ListBillContactsActivity extends BaseActivity {
 
 			if (phones != null && phones.getCount() > 0) {
 				String number = "";
-				
+
 				while (phones.moveToNext()) {
 					int type = phones.getInt(phones.getColumnIndex(Phone.TYPE));
 					switch (type) {
@@ -255,8 +255,8 @@ public class ListBillContactsActivity extends BaseActivity {
 		cursor.close();
 		return listContacts;
 	}
-    
-    private String getEmails(List<Contacts> contacts) {
+
+	private String getEmails(List<Contacts> contacts) {
 		StringBuffer sb = new StringBuffer();
 		for (Contacts c : contacts) {
 			if (c.getEmail() != null && !c.getEmail().trim().equals("")) {
@@ -271,7 +271,7 @@ public class ListBillContactsActivity extends BaseActivity {
 			return "";
 		}
 	}
-	
+
 	private String getPhoneNumbers(List<Contacts> contacts) {
 		StringBuffer sb = new StringBuffer();
 		for (Contacts c : contacts) {
@@ -287,7 +287,7 @@ public class ListBillContactsActivity extends BaseActivity {
 			return "";
 		}
 	}
-	
+
 	private String getNames(List<Contacts> contacts) {
 		StringBuffer sb = new StringBuffer();
 		for (Contacts c : contacts) {
@@ -302,5 +302,31 @@ public class ListBillContactsActivity extends BaseActivity {
 		else {
 			return "";
 		}
+	}
+
+	private class ContactsList extends AsyncTask<Void, Void, Void> {
+
+
+		@Override
+		protected void onPreExecute() {
+			dialog.setMessage("Carregando contatos...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			mContacts = getListContacts();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			dialog.dismiss();
+			if (mContacts.size() > 0) {
+				initView();
+			} else {
+				emptyList();
+			}
+		}		
 	}
 }
