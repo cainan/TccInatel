@@ -184,9 +184,11 @@ public class ListBillContactsActivity extends BaseActivity {
     	if (mContacts.size() > 0) {
             updateList();
         }
-    	if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
-        	mListContactAdapter.getListContactSelected().clear();
-        }
+    	if (mListContactAdapter != null) {
+    		if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
+            	mListContactAdapter.getListContactSelected().clear();
+            }
+    	}
         super.onResume();
     }
 

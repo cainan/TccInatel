@@ -27,6 +27,7 @@ public class ListBillContactsAdapter extends BaseAdapter {
 	private Contacts mContactSelected;
 
 	private List<Contacts> listContactSelected = new ArrayList<Contacts>();
+	
 
 	/**
 	 * The class' constructor
@@ -39,17 +40,17 @@ public class ListBillContactsAdapter extends BaseAdapter {
 		mContacts = contacts;
 	}
 
-	@Override
+	//@Override
 	public int getCount() {
 		return mContacts.size();
 	}
 
-	@Override
+	//@Override
 	public Object getItem(int position) {
 		return mContacts.get(position);
 	}
 
-	@Override
+	//@Override
 	public long getItemId(int position) {
 		return position;
 	}
@@ -62,7 +63,7 @@ public class ListBillContactsAdapter extends BaseAdapter {
 		this.listContactSelected = listContactSelected;
 	}
 
-	@Override
+	//@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		RelativeLayout rowLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(
@@ -115,5 +116,6 @@ public class ListBillContactsAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+	
 }
 

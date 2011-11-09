@@ -10,7 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/titulo"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentLeft="true" />
+        
+     <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView1_contact">   
 
     <TextView
         android:id="@+id/empty_list_contact"
@@ -20,7 +25,7 @@
         android:textAppearance="@style/LabelEmptyList"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="@string/empty_list_contact" />
+        android:text="@string/empty_list" />
 
     <RelativeLayout
         android:id="@+id/list_layout_contact"
@@ -46,5 +51,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/select_contacts" /> 
-
+        
+</RelativeLayout>
 </RelativeLayout>

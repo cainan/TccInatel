@@ -6,45 +6,50 @@
     android:background="@drawable/fundo2">
 
     <ImageView
-        android:id="@+id/imageView1_contact"
+        android:id="@+id/imageView1_paid"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:src="@drawable/titulo"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentLeft="true" />
+        
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView1_paid">    
 
     <TextView
-        android:id="@+id/empty_list_contact"
+        android:id="@+id/empty_list_paid"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/LabelEmptyList"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="@string/empty_list_contact" />
+        android:text="@string/empty_list" />
 
     <RelativeLayout
-        android:id="@+id/list_layout_contact"
+        android:id="@+id/list_layout_paid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/imageView1_contact"
-        android:layout_above="@+id/button_contact">
+        android:layout_below="@id/imageView1_paid"
+        android:layout_above="@+id/button_paid">
 
         <ListView
-            android:id="@+id/listview_contact"
+            android:id="@+id/listview_paid"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@id/imageView1_contact"
+            android:layout_below="@id/imageView1_paid"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@drawable/divider" />
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/button_contact"
+        android:id="@+id/button_paid"
         android:layout_width="160dip"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/select_contacts" /> 
-
+        android:text="@string/select_bill" /> 
+ </RelativeLayout>
 </RelativeLayout>

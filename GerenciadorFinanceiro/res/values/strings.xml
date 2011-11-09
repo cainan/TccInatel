@@ -37,6 +37,7 @@
     <string name="remove_txt">Remover</string>
     <string name="today_bills">Contas de Hoje:</string>
     <string name="empty_list">Nenhuma Conta foi \nCadastrada.</string>
+    <string name="empty_list_contact">Nenhum Contato foi \nCadastrada.</string>
     <string name="spinner_prompt">Listar:</string>
     <string name="sms">Enviar por SMS</string>
     <string name="email">Enviar por E-mail</string>

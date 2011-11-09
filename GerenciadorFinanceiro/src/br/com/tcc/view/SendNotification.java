@@ -86,7 +86,7 @@ public class SendNotification extends Activity {
     	}
     	
     	sb.append(").\n\n");
-    	sb.append("Portanto, " + nf.format(total) + "/" + divNames.length + " = R$ " + nf.format(total/divNames.length) + " para cada um.");
+    	sb.append("Portanto, " + nf.format(total) + "/" + divNames.length + " = " + nf.format(total/divNames.length) + " para cada um.");
     	sb.append("\n\n\nObrigado!!!");
     	
     	return sb.toString();

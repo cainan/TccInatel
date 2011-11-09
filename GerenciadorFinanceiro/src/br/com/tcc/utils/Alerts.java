@@ -20,7 +20,7 @@ public class Alerts {
         alert = new AlertDialog.Builder(ctx).create();
         alert.setTitle("Location");
         alert.setButton("OK", new DialogInterface.OnClickListener() {
-            @Override
+            //@Override
             public void onClick(DialogInterface dialog, int which) {
                 return;
             }
