@@ -6,8 +6,10 @@ import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -62,6 +64,9 @@ public class ListActivity extends BaseActivity {
 
     /** Hold the position of the spinner selected item */
     private int mPosition = 0;
+    
+    /** Hold the ProgressDialog Instance */
+	ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +75,8 @@ public class ListActivity extends BaseActivity {
 
         // getting a database instance
         mDatabase = DatabaseDelegate.getInstance(getApplicationContext());
-        mBills = mDatabase.readAll();
+        dialog = new ProgressDialog(this);
+        //mBills = mDatabase.readAll();
 
         // getting some fields
         mListView = (ListView) findViewById(R.id.listview);
@@ -79,11 +85,7 @@ public class ListActivity extends BaseActivity {
         mSpinner = (Spinner) findViewById(R.id.spinner);
         mTextTotal = (TextView) findViewById(R.id.text_totalizador);
 
-        if (mBills.size() > 0) {
-            initView();
-        } else {
-            emptyList();
-        }
+        
     }
 
     /**
@@ -303,9 +305,12 @@ public class ListActivity extends BaseActivity {
      */
     @Override
     protected void onResume() {
-        if (mBills.size() > 0) {
+        /*
+    	if (mBills.size() > 0) {
             updateList();
         }
+        */
+    	new BillListOperation().execute();
         super.onResume();
     }
 
@@ -341,5 +346,31 @@ public class ListActivity extends BaseActivity {
     private int getPosition() {
         return mPosition;
     }
+    
+    private class BillListOperation extends AsyncTask<Void, Void, Void>{
+    	@Override
+    	protected void onPreExecute() {
+    		dialog.setMessage("Carregando contas...");
+    		dialog.show();
+    	}
+    	
+    	@Override
+    	protected Void doInBackground(Void... params) {
+    		mBills = mDatabase.readAll();
+    		return null;
+    	}
+    	
+    	@Override
+    	protected void onPostExecute(Void result) {
+    		dialog.dismiss();
+    		if (mBills.size() > 0) {
+                initView();
+            } else {
+                emptyList();
+            }
+    	}
+    }
 
 }
+
+
