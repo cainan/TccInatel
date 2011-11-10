@@ -84,6 +84,7 @@
         android:spacing="30dip"
         android:id="@+id/gallery" 
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dip" />
+        android:layout_marginBottom="25dip" 
+        android:layout_below="@id/btn_pie_graphs_bar"/>
 
 </RelativeLayout>
