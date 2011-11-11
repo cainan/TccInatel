@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/spinner"
             android:layout_marginBottom="36dp"
-            android:paddingLeft="175dip"
+            android:paddingLeft="50dip"
             android:layout_toRightOf="@id/spinner"
             android:text="@string/total_txt"
             android:visibility="gone" />
