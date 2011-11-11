@@ -24,6 +24,7 @@ import br.com.tcc.adapter.ListBillPaidAdapter;
 import br.com.tcc.model.Conta;
 import br.com.tcc.model.database.DatabaseDelegate;
 
+
 public class ListBillPaidActivity extends BaseActivity {
 
 	/** Hold the Bills */
