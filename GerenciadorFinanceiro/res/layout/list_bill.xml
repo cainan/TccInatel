@@ -45,7 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:prompt="@string/spinner_prompt" />
+        android:prompt="@string/spinner_prompt"
+        android:visibility="gone" />
         
     <TextView 
     	android:id="@+id/text_total"
@@ -55,7 +56,8 @@
         android:layout_marginBottom="18dp"
         android:paddingLeft="5dip"
         android:layout_toRightOf="@id/spinner"
-        android:text="@string/total_txt" />    
+        android:text="@string/total_txt"
+        android:visibility="gone" />    
      
     <TextView 
     	android:id="@+id/text_totalizador"
@@ -64,6 +66,8 @@
         android:layout_alignParentBottom="true"
         android:paddingLeft="3dip"
         android:layout_marginBottom="18dp"
-        android:layout_toRightOf="@id/text_total" />    
+        android:layout_toRightOf="@id/text_total"
+        android:visibility="gone" />    
 
 </RelativeLayout>
+
