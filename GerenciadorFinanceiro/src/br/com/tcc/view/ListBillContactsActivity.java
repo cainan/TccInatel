@@ -192,6 +192,13 @@ public class ListBillContactsActivity extends BaseActivity {
 		super.onResume();
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+		dialog = null;
+	}
+
+	
 	/**
 	 * Return list of contacts
 	 */
@@ -321,12 +328,15 @@ public class ListBillContactsActivity extends BaseActivity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			dialog.dismiss();
-			if (mContacts.size() > 0) {
-				initView();
-			} else {
-				emptyList();
+			if (dialog != null) {
+				dialog.dismiss();
+				if (mContacts.size() > 0) {
+					initView();
+				} else {
+					emptyList();
+				}
 			}
+
 		}		
 	}
 }

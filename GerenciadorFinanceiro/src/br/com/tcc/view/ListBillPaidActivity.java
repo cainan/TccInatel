@@ -179,6 +179,13 @@ public class ListBillPaidActivity extends BaseActivity {
 		new BillsOperation().execute();
 		super.onResume();
 	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		dialog = null;
+	}
+	
 
 	/**
 	 * Return list of bills selected
@@ -215,12 +222,15 @@ public class ListBillPaidActivity extends BaseActivity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			dialog.dismiss(); 
-			if (mBillsPaid.size() > 0) {
-				initView();
-			} else {
-				emptyList();
+			if (dialog != null) {
+				dialog.dismiss(); 
+				if (mBillsPaid.size() > 0) {
+					initView();
+				} else {
+					emptyList();
+				}
 			}
+			
 		}
 	}
 

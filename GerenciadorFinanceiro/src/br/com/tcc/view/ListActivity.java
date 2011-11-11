@@ -325,6 +325,12 @@ public class ListActivity extends BaseActivity {
 		super.onResume();
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+		dialog = null;
+	}
+
 	/**
 	 * Calculate Total value
 	 * 
@@ -379,7 +385,7 @@ public class ListActivity extends BaseActivity {
 		@Override
 		protected Void doInBackground(Integer... params) {
 			execucao = params[0];
-			
+
 			switch (getPosition()) {
 			case 0:
 				mBills = mDatabase.readAll();
@@ -396,20 +402,23 @@ public class ListActivity extends BaseActivity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			dialog.dismiss();
-			if (execucao == 0) {
-				if (mBills.size() > 0) {
-					initView();
-				} else {
-					emptyList();
+			if (dialog != null) {
+				dialog.dismiss();
+				if (execucao == 0) {
+					if (mBills.size() > 0) {
+						initView();
+					} else {
+						emptyList();
+					}
+				}
+				else {
+					calculateTotal(mBills);
+					mListAdapter.updateAdapter(mBills);
 				}
 			}
-			else {
-				calculateTotal(mBills);
-				mListAdapter.updateAdapter(mBills);
-			}
-			
+
 		}
 	}
 
+	
 }
