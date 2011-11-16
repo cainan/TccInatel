@@ -3,7 +3,7 @@
     <string name="app_name">Gerenciador Financeiro</string>
     <string name="exit">Sair</string>
     <string name="sobre">Sobre</string>
-    <string name="about_txt">Inatel - TCC \nTema: S.O. Android \nVersão: 2.0.1 \nData: 16/11/2011</string>
+    <string name="about_txt">Inatel - TCC \nTema: S.O. Android \nVersão: 2.0.2 \nData: 16/11/2011</string>
     <string name="register_bill_txt">Cadastrar Conta</string>
     <string name="location_gps">Localizar Bancos</string>
     <string name="name_txt">Conta*:</string>
