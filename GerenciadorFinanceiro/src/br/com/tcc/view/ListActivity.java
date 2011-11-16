@@ -29,7 +29,6 @@ import br.com.tcc.adapter.ListBillAdapter;
 import br.com.tcc.model.Conta;
 import br.com.tcc.model.database.DatabaseDelegate;
 
-
 public class ListActivity extends BaseActivity {
 
 	/** Hold dialog id */
@@ -79,7 +78,7 @@ public class ListActivity extends BaseActivity {
 
 		// getting a database instance
 		mDatabase = DatabaseDelegate.getInstance(getApplicationContext());
-		dialog = new ProgressDialog(this);
+		//dialog = new ProgressDialog(this);
 		//mBills = mDatabase.readAll();
 
 		// getting some fields
@@ -320,6 +319,7 @@ public class ListActivity extends BaseActivity {
             updateList();
         }
 		 */
+		dialog = new ProgressDialog(this);
 		setExecution(0);
 		new BillListOperation().execute(0);
 		super.onResume();
