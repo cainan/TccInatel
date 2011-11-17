@@ -223,12 +223,6 @@ public class ListBillPaidActivity extends BaseActivity {
         protected Void doInBackground(Void... params) {
             if (!isCancelled()) {
                 mBillsPaid = mDatabase.readBillToPay();
-                mBillsPaid = mDatabase.readAll();
-                mBillsPaid = mDatabase.readBillToPay();
-                mBillsPaid = mDatabase.readAll();
-                for (int i = 0; i < 30000; i++)
-                    for (int j = 0; j < 10000; j++)
-                        ;
             }
             return null;
         }
