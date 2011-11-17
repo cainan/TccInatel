@@ -40,6 +40,9 @@ public class ListBillPaidActivity extends BaseActivity {
 
     /** Hold the Button */
     private Button mButton;
+    
+    /** Hold the Cancel Button */
+    private Button mCancelBtn;
 
     /** Hold the Bills Selected */
     private String billsSelected;
@@ -67,7 +70,17 @@ public class ListBillPaidActivity extends BaseActivity {
         mListViewPaid = (ListView) findViewById(R.id.listview_paid);
         mEmptyListPaid = (TextView) findViewById(R.id.empty_list_paid);
         mButton = (Button) findViewById(R.id.button_paid);
+        mCancelBtn = (Button) findViewById(R.id.button_back);
 
+        mCancelBtn.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                finish();
+            }
+            
+        });
+        
         mButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
@@ -99,6 +112,10 @@ public class ListBillPaidActivity extends BaseActivity {
         if (mButton != null) {
             mButton.setVisibility(View.GONE);
         }
+        
+        if (mCancelBtn != null) {
+            mCancelBtn.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -116,6 +133,10 @@ public class ListBillPaidActivity extends BaseActivity {
 
         if (mButton != null) {
             mButton.setVisibility(View.VISIBLE);
+        }
+        
+        if (mCancelBtn != null) {
+            mCancelBtn.setVisibility(View.VISIBLE);
         }
 
         mListBillAdapterPaid = new ListBillPaidAdapter(getApplicationContext(), mBillsPaid);
