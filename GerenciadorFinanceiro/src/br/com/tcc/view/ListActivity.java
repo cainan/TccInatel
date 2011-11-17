@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import br.com.tcc.R;
@@ -248,7 +249,7 @@ public class ListActivity extends BaseActivity {
                     DatabaseDelegate db = DatabaseDelegate.getInstance(getApplicationContext());
                     db.deleteBill(mSelectedBill);
                     updateList();
-
+                    showToast();
                 }
 
             });
@@ -308,6 +309,13 @@ public class ListActivity extends BaseActivity {
             calculateTotal(mBills);
             break;
         }
+    }
+
+    /**
+     * Show a toast informing that the bill has been removed
+     */
+    private void showToast() {
+        Toast.makeText(this, "Conta Removida", Toast.LENGTH_SHORT).show();
     }
 
     /**
