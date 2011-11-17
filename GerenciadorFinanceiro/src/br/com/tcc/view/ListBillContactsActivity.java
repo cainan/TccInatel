@@ -3,8 +3,11 @@ package br.com.tcc.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
@@ -54,7 +58,7 @@ public class ListBillContactsActivity extends BaseActivity {
 
     /** Hold the Button */
     private Button mButton;
-    
+
     /** Hold the Cancel Button */
     private Button mCancelBtn;
 
@@ -63,6 +67,15 @@ public class ListBillContactsActivity extends BaseActivity {
 
     /** Hold the AsyncTask */
     private ContactsList mAsyncTask;
+
+    /** Hold the option dialog id */
+    private static final int OPTION_DIALOG = 1;
+
+    /** Hold the email id */
+    private static final int EMAIL = 0;
+
+    /** Hold the sms id */
+    private static final int SMS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,14 +89,14 @@ public class ListBillContactsActivity extends BaseActivity {
 
         Intent i = getIntent();
         billsSelected = i.getStringExtra("bills");
-        
+
         mCancelBtn.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
                 finish();
             }
-            
+
         });
 
         mButton.setOnClickListener(new OnClickListener() {
@@ -102,7 +115,9 @@ public class ListBillContactsActivity extends BaseActivity {
                     i.putExtra("emails", emailContactsSelected);
                     i.putExtra("phones", phoneContactsSelected);
                     i.setClass(getApplicationContext(), SendNotification.class);
-                    startActivity(i);
+                    // startActivity(i);
+
+                    showDialog(OPTION_DIALOG);
                 }
             }
         });
@@ -132,8 +147,8 @@ public class ListBillContactsActivity extends BaseActivity {
         if (mButton != null) {
             mButton.setVisibility(View.GONE);
         }
-        
-        if(mCancelBtn != null) {
+
+        if (mCancelBtn != null) {
             mCancelBtn.setVisibility(View.GONE);
         }
     }
@@ -154,8 +169,8 @@ public class ListBillContactsActivity extends BaseActivity {
         if (mButton != null) {
             mButton.setVisibility(View.VISIBLE);
         }
-        
-        if(mCancelBtn != null) {
+
+        if (mCancelBtn != null) {
             mCancelBtn.setVisibility(View.VISIBLE);
         }
 
@@ -359,4 +374,39 @@ public class ListBillContactsActivity extends BaseActivity {
         }
 
     }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+        case (OPTION_DIALOG):
+            return new AlertDialog.Builder(ListBillContactsActivity.this).setTitle(
+                    R.string.enviar_por).setItems(R.array.enviar_por_item,
+
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    sendInfo(which);
+                }
+
+            }).create();
+
+        }
+
+        return null;
+    }
+
+    private void sendInfo(int which) {
+        switch (which) {
+        case EMAIL:
+            Log.d("log", "enviar por e-mail");
+            break;
+
+        case SMS:
+            Log.d("log", "enviar por sms");
+            break;
+
+        default:
+            break;
+        }
+    }
+
 }
