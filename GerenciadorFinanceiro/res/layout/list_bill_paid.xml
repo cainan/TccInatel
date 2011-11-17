@@ -27,7 +27,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/imageView1_paid"
-        android:layout_above="@+id/button_paid">
+        android:layout_above="@+id/buttons_layout">
 
         <ListView
             android:id="@+id/listview_paid"
@@ -39,14 +39,30 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_paid"
-        android:layout_width="160dip"
+    <LinearLayout
+        android:id="@+id/buttons_layout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/select_bill"
-        android:visibility="gone" /> 
+        android:orientation="horizontal"
+        android:paddingTop="4dip"
+        android:background="@color/light_black">
+
+        <Button
+            android:id="@+id/button_back"
+            android:layout_width="160dip"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelar"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button_paid"
+            android:layout_width="160dip"
+            android:layout_height="wrap_content"
+            android:text="@string/select_bill"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 </RelativeLayout>
 
