@@ -172,11 +172,8 @@ public class NotificationActivity extends BaseActivity {
             payField.setText(mBill.getVencimento());
         }
 
-        View barcodeBtnLayout = (View) findViewById(R.id.barcode_btn_layout);
         View barcodeLayout = (View) findViewById(R.id.barcode_layout);
-        barcodeBtnLayout.setVisibility(View.VISIBLE);
-        barcodeLayout.setVisibility(View.VISIBLE);
-        /*
+        barcodeLayout.setVisibility(View.GONE);
         if (mBill.getCodigoBarra() != null) {
             if (barcodeLayout != null) {
                 barcodeLayout.setVisibility(View.VISIBLE);
@@ -185,12 +182,8 @@ public class NotificationActivity extends BaseActivity {
                     barcode.setText(mBill.getCodigoBarra());
                 }
             }
-
-            if (barcodeBtnLayout != null) {
-                barcodeBtnLayout.setVisibility(View.VISIBLE);
-            }
         }
-        */
+
     }
 
     /**
