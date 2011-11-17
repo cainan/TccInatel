@@ -1,7 +1,9 @@
 package br.com.tcc.view;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,12 +12,12 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
@@ -77,6 +79,11 @@ public class ListBillContactsActivity extends BaseActivity {
     /** Hold the sms id */
     private static final int SMS = 1;
 
+    /** Hold the message that will be sent */
+    private String mMessage;
+
+    public static final String SUBJECT = "Notificação de contas";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,12 +116,12 @@ public class ListBillContactsActivity extends BaseActivity {
                             .getListContactSelected());
                     nameContactsSelected = getNames(mListContactAdapter.getListContactSelected());
 
-                    Intent i = new Intent();
-                    i.putExtra("bills", billsSelected);
-                    i.putExtra("names", nameContactsSelected);
-                    i.putExtra("emails", emailContactsSelected);
-                    i.putExtra("phones", phoneContactsSelected);
-                    i.setClass(getApplicationContext(), SendNotification.class);
+                    // Intent i = new Intent();
+                    // i.putExtra("bills", billsSelected);
+                    // i.putExtra("names", nameContactsSelected);
+                    // i.putExtra("emails", emailContactsSelected);
+                    // i.putExtra("phones", phoneContactsSelected);
+                    // i.setClass(getApplicationContext(), SendNotification.class);
                     // startActivity(i);
 
                     showDialog(OPTION_DIALOG);
@@ -395,18 +402,64 @@ public class ListBillContactsActivity extends BaseActivity {
     }
 
     private void sendInfo(int which) {
+
+        mMessage = parserMessage(billsSelected, nameContactsSelected);
+
         switch (which) {
         case EMAIL:
-            Log.d("log", "enviar por e-mail");
+            final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+            emailIntent.setType("plain/text");
+            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+                    new String[] { emailContactsSelected });
+            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, SUBJECT);
+            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, mMessage);
+
+            startActivity(Intent.createChooser(emailIntent, "Enviar e-mail usando:"));
             break;
 
         case SMS:
-            Log.d("log", "enviar por sms");
+            Uri u = Uri.fromParts("sms", phoneContactsSelected, null);
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, u);
+            sendIntent.putExtra("sms_body", mMessage);
+            startActivity(sendIntent);
             break;
 
         default:
             break;
         }
+    }
+
+    private String parserMessage(String message, String names) {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        StringBuffer sb = new StringBuffer();
+        String[] divMessage = message.split(";");
+        String[] divNames = names.split(",");
+        int posTotal = divMessage.length - 1;
+        float total = Float.parseFloat(divMessage[posTotal]);
+        sb.append("Notificação sobre contas\n\n");
+
+        for (int i = 0; i < posTotal; i++) {
+            sb.append(divMessage[i] + "\n");
+        }
+
+        sb.append("\nTotal: " + nf.format(total) + "\n\n");
+        sb.append("Total de pessoas que irão pagar: " + divNames.length + " (");
+
+        for (int i = 0; i < divNames.length; i++) {
+            if (i == divNames.length - 1) {
+                sb.append(divNames[i]);
+            } else {
+                sb.append(divNames[i] + ", ");
+            }
+        }
+
+        sb.append(").\n\n");
+        sb.append("Portanto, " + nf.format(total) + "/" + divNames.length + " = "
+                + nf.format(total / divNames.length) + " para cada um.");
+        sb.append("\n\n\nObrigado!!!");
+
+        return sb.toString();
     }
 
 }
