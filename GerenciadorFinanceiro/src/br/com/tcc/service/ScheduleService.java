@@ -138,7 +138,7 @@ public class ScheduleService extends Service {
         // Set notification event
         notification.setLatestEventInfo(context, notificationTitle, message, pendingItt);
 
-        // notification.vibrate = new long[] { 100, 250, 100, 300 };
+        notification.vibrate = new long[] { 100, 250, 100, 300 };
         notification.defaults |= Notification.DEFAULT_LIGHTS;
 
         nm.notify(id, notification);
