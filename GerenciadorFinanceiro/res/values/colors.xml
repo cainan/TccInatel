@@ -2,8 +2,9 @@
 <resources>
 
     <drawable name="transparent_background">#BB000000</drawable>
-
-<color name="red">#FF0000</color>
-<color name="white">#FFFFFF</color>
-<color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="light_black">#4A000000</color>
+    
 </resources>

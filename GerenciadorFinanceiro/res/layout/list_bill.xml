@@ -27,7 +27,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/imageView1"
-        android:layout_above="@+id/spinner">
+        android:layout_above="@+id/footer">
 
         <ListView
             android:id="@+id/listview"
@@ -39,35 +39,45 @@
 
     </RelativeLayout>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="160dip"
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:prompt="@string/spinner_prompt"
-        android:visibility="gone" />
-        
-    <TextView 
-    	android:id="@+id/text_total"
-    	android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp"
-        android:paddingLeft="5dip"
-        android:layout_toRightOf="@id/spinner"
-        android:text="@string/total_txt"
-        android:visibility="gone" />    
-     
-    <TextView 
-    	android:id="@+id/text_totalizador"
-    	android:layout_width="105dip"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingLeft="3dip"
-        android:layout_marginBottom="18dp"
-        android:layout_toRightOf="@id/text_total"
-        android:visibility="gone" />    
+        android:paddingTop="3dip"
+        android:paddingLeft="2dip"
+        android:background="@color/light_black">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="160dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:prompt="@string/spinner_prompt"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="18dp"
+            android:paddingLeft="5dip"
+            android:layout_toRightOf="@id/spinner"
+            android:text="@string/total_txt"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_totalizador"
+            android:layout_width="105dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="3dip"
+            android:layout_marginBottom="18dp"
+            android:layout_toRightOf="@id/text_total"
+            android:visibility="gone" />
+    </LinearLayout>
 
 </RelativeLayout>
 
