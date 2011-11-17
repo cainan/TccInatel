@@ -28,315 +28,314 @@ import br.com.tcc.model.Contacts;
 
 public class ListBillContactsActivity extends BaseActivity {
 
-	/** Hold the ListView */
-	private ListView mListViewContacts;
+    /** Hold the ListView */
+    private ListView mListViewContacts;
 
-	/** Hold the ListAdapter */
-	public ListBillContactsAdapter mListContactAdapter;
+    /** Hold the ListAdapter */
+    public ListBillContactsAdapter mListContactAdapter;
 
-	/** Hold the Contacts List */
-	public List<Contacts> mContacts = new ArrayList<Contacts>();
+    /** Hold the Contacts List */
+    public List<Contacts> mContacts = new ArrayList<Contacts>();
 
-	/** Hold the Empty message */
-	private TextView mEmptyListContacts;
+    /** Hold the Empty message */
+    private TextView mEmptyListContacts;
 
-	/** Hold the Email Contacts Selected */
-	private String emailContactsSelected;
+    /** Hold the Email Contacts Selected */
+    private String emailContactsSelected;
 
-	/** Hold the Phone Number Contacts Selected */
-	private String phoneContactsSelected;
+    /** Hold the Phone Number Contacts Selected */
+    private String phoneContactsSelected;
 
-	/** Hold the Names Contacts Selected */
-	private String nameContactsSelected;
+    /** Hold the Names Contacts Selected */
+    private String nameContactsSelected;
 
-	/** Hold the Bills Selected */
-	private String billsSelected;
+    /** Hold the Bills Selected */
+    private String billsSelected;
 
-	/** Hold the Button */
-	private Button mButton;
+    /** Hold the Button */
+    private Button mButton;
 
-	ProgressDialog dialog;
+    /** Hold the Progress Dialog */
+    ProgressDialog mDialog;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.list_contacts_bill);
+    /** Hold the AsyncTask */
+    private ContactsList mAsyncTask;
 
-		dialog = new ProgressDialog(this);
-		new ContactsList().execute();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.list_contacts_bill);
 
-		mListViewContacts = (ListView) findViewById(R.id.listview_contact);
-		mEmptyListContacts = (TextView) findViewById(R.id.empty_list_contact);
-		mButton = (Button) findViewById(R.id.button_contact);
+        mListViewContacts = (ListView) findViewById(R.id.listview_contact);
+        mEmptyListContacts = (TextView) findViewById(R.id.empty_list_contact);
+        mButton = (Button) findViewById(R.id.button_contact);
 
-		Intent i = getIntent();
-		billsSelected = i.getStringExtra("bills");
+        Intent i = getIntent();
+        billsSelected = i.getStringExtra("bills");
 
+        mButton.setOnClickListener(new OnClickListener() {
 
-		//mContacts = getListContacts();
+            public void onClick(View v) {
+                if (mListContactAdapter.getListContactSelected() != null
+                        && mListContactAdapter.getListContactSelected().size() > 0) {
+                    emailContactsSelected = getEmails(mListContactAdapter.getListContactSelected());
+                    phoneContactsSelected = getPhoneNumbers(mListContactAdapter
+                            .getListContactSelected());
+                    nameContactsSelected = getNames(mListContactAdapter.getListContactSelected());
 
-		mButton.setOnClickListener(new OnClickListener() {
+                    Intent i = new Intent();
+                    i.putExtra("bills", billsSelected);
+                    i.putExtra("names", nameContactsSelected);
+                    i.putExtra("emails", emailContactsSelected);
+                    i.putExtra("phones", phoneContactsSelected);
+                    i.setClass(getApplicationContext(), SendNotification.class);
+                    startActivity(i);
+                }
+            }
+        });
 
-			public void onClick(View v) {
-				if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
-					emailContactsSelected = getEmails(mListContactAdapter.getListContactSelected());
-					phoneContactsSelected = getPhoneNumbers(mListContactAdapter.getListContactSelected());
-					nameContactsSelected = getNames(mListContactAdapter.getListContactSelected());
+    }
 
-					Intent i = new Intent();
-					i.putExtra("bills", billsSelected);
-					i.putExtra("names", nameContactsSelected);
-					i.putExtra("emails", emailContactsSelected);
-					i.putExtra("phones", phoneContactsSelected);
-					i.setClass(getApplicationContext(), SendNotification.class);
-					startActivity(i);
-				}
-			}
-		});
+    /**
+     * Starts the AsyncTask
+     */
+    private void launchTask() {
+        mAsyncTask = new ContactsList();
+        mAsyncTask.execute();
+    }
 
+    /**
+     * Show a message telling that there is not bills registered
+     */
+    private void emptyList() {
+        if (mListViewContacts != null) {
+            mListViewContacts.setVisibility(View.GONE);
+        }
 
+        if (mEmptyListContacts != null) {
+            mEmptyListContacts.setVisibility(View.VISIBLE);
+        }
 
-	}
+        if (mButton != null) {
+            mButton.setVisibility(View.GONE);
+        }
+    }
 
-	/**
-	 * Show a message telling that there is not bills registered
-	 */
-	private void emptyList() {
-		if (mListViewContacts != null) {
-			mListViewContacts.setVisibility(View.GONE);
-		}
+    /**
+     * Initializing the view
+     */
+    private void initView() {
 
-		if (mEmptyListContacts != null) {
-			mEmptyListContacts.setVisibility(View.VISIBLE);
-		}
+        if (mListViewContacts != null) {
+            mListViewContacts.setVisibility(View.VISIBLE);
+        }
 
-		if (mButton != null) {
-			mButton.setVisibility(View.GONE);
-		}
-	}
+        if (mEmptyListContacts != null) {
+            mEmptyListContacts.setVisibility(View.GONE);
+        }
 
-	/**
-	 * Initializing the view
-	 */
-	private void initView() {
+        if (mButton != null) {
+            mButton.setVisibility(View.VISIBLE);
+        }
 
-		if (mListViewContacts != null) {
-			mListViewContacts.setVisibility(View.VISIBLE);
-		}
+        mListContactAdapter = new ListBillContactsAdapter(getApplicationContext(), mContacts);
+        mListViewContacts.setAdapter(mListContactAdapter);
 
-		if (mEmptyListContacts != null) {
-			mEmptyListContacts.setVisibility(View.GONE);
-		}
+        setListAnimation();
+    }
 
-		if (mButton != null) {
-			mButton.setVisibility(View.VISIBLE);
-		}
+    /**
+     * Create a cascade animation when showing the list
+     */
+    private void setListAnimation() {
 
-		mListContactAdapter = new ListBillContactsAdapter(getApplicationContext(), mContacts);
-		mListViewContacts.setAdapter(mListContactAdapter);       
+        AnimationSet set = new AnimationSet(true);
 
-		setListAnimation();
-	}
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(110);
+        set.addAnimation(animation);
 
-	/**
-	 * Create a cascade animation when showing the list
-	 */
-	private void setListAnimation() {
+        animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -1.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f);
+        animation.setDuration(160);
+        set.addAnimation(animation);
 
-		AnimationSet set = new AnimationSet(true);
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
+        mListViewContacts.setLayoutAnimation(controller);
 
-		Animation animation = new AlphaAnimation(0.0f, 1.0f);
-		animation.setDuration(110);
-		set.addAnimation(animation);
+    }
 
-		animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -1.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f);
-		animation.setDuration(160);
-		set.addAnimation(animation);
+    /**
+     * Call clear list
+     */
+    @Override
+    protected void onResume() {
+        launchTask();
 
-		LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
-		mListViewContacts.setLayoutAnimation(controller);
+        if (mListContactAdapter != null) {
+            if (mListContactAdapter.getListContactSelected() != null
+                    && mListContactAdapter.getListContactSelected().size() > 0) {
+                mListContactAdapter.getListContactSelected().clear();
+            }
+        }
+        super.onResume();
+    }
 
-	}  
+    @Override
+    protected void onPause() {
+        if (mDialog.isShowing()) {
+            mDialog.cancel();
+        }
+        super.onPause();
+    }
 
-	/**
-	 * Read to update the listView
-	 */
-	protected void updateList() {
-		updateData();
-		mListContactAdapter.updateAdapter(mContacts);
-	}
+    /**
+     * Return list of contacts
+     */
+    private List<Contacts> getListContacts() {
 
-	/**
-	 * Read the database to get the updated info
-	 */
-	private void updateData() {
-		mContacts = getListContacts();
-	}
+        List<Contacts> listContacts = new ArrayList<Contacts>();
 
+        // Find contact based on name.
+        ContentResolver cr = getContentResolver();
+        String selection = ContactsContract.Contacts.IN_VISIBLE_GROUP + " = '1'";
+        Cursor cursor = cr
+                .query(ContactsContract.Contacts.CONTENT_URI, null, selection, null, null);
 
-	/**
-	 * Call clear list
-	 */
-	@Override
-	protected void onResume() {
-		if (mContacts.size() > 0) {
-			updateList();
-		}
-		if (mListContactAdapter != null) {
-			if (mListContactAdapter.getListContactSelected() != null && mListContactAdapter.getListContactSelected().size() > 0) {
-				mListContactAdapter.getListContactSelected().clear();
-			}
-		}
-		super.onResume();
-	}
+        while (cursor.moveToNext()) {
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-		dialog = null;
-	}
+            Contacts contact = new Contacts();
+            String contactId = cursor.getString(cursor
+                    .getColumnIndex(ContactsContract.Contacts._ID));
+            // seta id
+            contact.setId(contactId);
 
-	
-	/**
-	 * Return list of contacts
-	 */
-	private List<Contacts> getListContacts() {
+            String contactName = cursor.getString(cursor
+                    .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            // seta o nome do contato
+            contact.setName(contactName);
 
-		List<Contacts> listContacts = new ArrayList<Contacts>();
+            // Get all phone numbers.
+            Cursor phones = cr.query(Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId,
+                    null, null);
 
-		//  Find contact based on name.
-		ContentResolver cr = getContentResolver();
-		String selection = ContactsContract.Contacts.IN_VISIBLE_GROUP + " = '1'";
-		Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, selection, null, null);
+            if (phones != null && phones.getCount() > 0) {
+                String number = "";
 
-		while (cursor.moveToNext()) {
+                while (phones.moveToNext()) {
+                    int type = phones.getInt(phones.getColumnIndex(Phone.TYPE));
+                    switch (type) {
+                    case Phone.TYPE_MOBILE:
+                        number = phones.getString(phones.getColumnIndex(Phone.NUMBER));
+                        contact.setPhoneNumber(number);
+                        break;
+                    }
+                }
+                if (number == null || number.equals("")) {
+                    phones.moveToFirst();
+                    number = phones.getString(phones.getColumnIndex(Phone.NUMBER));
+                    contact.setPhoneNumber(number);
+                }
+            }
+            phones.close();
 
-			Contacts contact = new Contacts();
-			String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-			//seta id
-			contact.setId(contactId);
+            // Get all email addresses.
+            Cursor emails = cr.query(Email.CONTENT_URI, null, Email.CONTACT_ID + " = " + contactId,
+                    null, null);
 
-			String contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-			//seta o nome do contato
-			contact.setName(contactName);
+            if (emails != null && emails.getCount() > 0) {
+                emails.moveToFirst();
+                String email = emails.getString(emails.getColumnIndex(Email.DATA));
+                if (email != null && !email.equals("")) {
+                    contact.setEmail(email);
+                }
+            }
+            emails.close();
+            contact.setMarked(false);
+            listContacts.add(contact);
+        }
+        cursor.close();
+        return listContacts;
+    }
 
-			//  Get all phone numbers.
-			Cursor phones = cr.query(Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
+    private String getEmails(List<Contacts> contacts) {
+        StringBuffer sb = new StringBuffer();
+        for (Contacts c : contacts) {
+            if (c.getEmail() != null && !c.getEmail().trim().equals("")) {
+                sb.append(c.getEmail() + ",");
+            }
+        }
+        if (sb != null && sb.length() > 0) {
+            String emails = sb.toString();
+            return emails.substring(0, emails.length() - 1);
+        } else {
+            return "";
+        }
+    }
 
-			if (phones != null && phones.getCount() > 0) {
-				String number = "";
+    private String getPhoneNumbers(List<Contacts> contacts) {
+        StringBuffer sb = new StringBuffer();
+        for (Contacts c : contacts) {
+            if (c.getPhoneNumber() != null && !c.getPhoneNumber().trim().equals("")) {
+                sb.append(c.getPhoneNumber() + ",");
+            }
+        }
+        if (sb != null && sb.length() > 0) {
+            String phones = sb.toString();
+            return phones.substring(0, phones.length() - 1);
+        } else {
+            return "";
+        }
+    }
 
-				while (phones.moveToNext()) {
-					int type = phones.getInt(phones.getColumnIndex(Phone.TYPE));
-					switch (type) {
-					case Phone.TYPE_MOBILE:
-						number = phones.getString(phones.getColumnIndex(Phone.NUMBER));
-						contact.setPhoneNumber(number);
-						break;
-					}
-				}
-				if (number == null || number.equals("")) {
-					phones.moveToFirst();
-					number = phones.getString(phones.getColumnIndex(Phone.NUMBER));
-					contact.setPhoneNumber(number);
-				}
-			}
-			phones.close();
+    private String getNames(List<Contacts> contacts) {
+        StringBuffer sb = new StringBuffer();
+        for (Contacts c : contacts) {
+            if (c.getName() != null && !c.getName().trim().equals("")) {
+                sb.append(c.getName() + ",");
+            }
+        }
+        if (sb != null && sb.length() > 0) {
+            String names = sb.toString();
+            return names.substring(0, names.length() - 1);
+        } else {
+            return "";
+        }
+    }
 
-			//  Get all email addresses.
-			Cursor emails = cr.query(Email.CONTENT_URI, null, Email.CONTACT_ID + " = " + contactId, null, null);
+    private class ContactsList extends AsyncTask<Void, Void, Void> {
 
-			if(emails != null && emails.getCount() > 0) {
-				emails.moveToFirst();
-				String email = emails.getString(emails.getColumnIndex(Email.DATA));
-				if (email != null && !email.equals("")) {
-					contact.setEmail(email);
-				}
-			}
-			emails.close();
-			contact.setMarked(false);
-			listContacts.add(contact);
-		}
-		cursor.close();
-		return listContacts;
-	}
+        @Override
+        protected void onPreExecute() {
+            mDialog = new ProgressDialog(ListBillContactsActivity.this);
+            if (mDialog != null) {
+                mDialog.setCancelable(false);
+                mDialog.setMessage("Carregando contatos...");
+                mDialog.show();
+            }
+        }
 
-	private String getEmails(List<Contacts> contacts) {
-		StringBuffer sb = new StringBuffer();
-		for (Contacts c : contacts) {
-			if (c.getEmail() != null && !c.getEmail().trim().equals("")) {
-				sb.append(c.getEmail() + ",");
-			}
-		}
-		if (sb != null && sb.length() > 0) {
-			String emails = sb.toString();
-			return emails.substring(0, emails.length() - 1);
-		}
-		else {
-			return "";
-		}
-	}
+        @Override
+        protected Void doInBackground(Void... params) {
+            if (!isCancelled()) {
+                mContacts = getListContacts();
+            }
+            return null;
+        }
 
-	private String getPhoneNumbers(List<Contacts> contacts) {
-		StringBuffer sb = new StringBuffer();
-		for (Contacts c : contacts) {
-			if (c.getPhoneNumber() != null && !c.getPhoneNumber().trim().equals("")) {
-				sb.append(c.getPhoneNumber() + ",");
-			}
-		}
-		if (sb != null && sb.length() > 0) {
-			String phones = sb.toString();
-			return phones.substring(0, phones.length() - 1);
-		}
-		else {
-			return "";
-		}
-	}
+        @Override
+        protected void onPostExecute(Void result) {
+            if (mDialog != null && mDialog.isShowing()) {
+                mDialog.dismiss();
+            }
+            if (mContacts.size() > 0) {
+                initView();
+            } else {
+                emptyList();
+            }
 
-	private String getNames(List<Contacts> contacts) {
-		StringBuffer sb = new StringBuffer();
-		for (Contacts c : contacts) {
-			if (c.getName() != null && !c.getName().trim().equals("")) {
-				sb.append(c.getName() + ",");
-			}
-		}
-		if (sb != null && sb.length() > 0) {
-			String names = sb.toString();
-			return names.substring(0, names.length() - 1);
-		}
-		else {
-			return "";
-		}
-	}
+        }
 
-	private class ContactsList extends AsyncTask<Void, Void, Void> {
-
-
-		@Override
-		protected void onPreExecute() {
-			dialog.setMessage("Carregando contatos...");
-			dialog.show();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			mContacts = getListContacts();
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			if (dialog != null) {
-				dialog.dismiss();
-				if (mContacts.size() > 0) {
-					initView();
-				} else {
-					emptyList();
-				}
-			}
-
-		}		
-	}
+    }
 }
