@@ -59,7 +59,7 @@
                 android:layout_width="160dip"
                 android:layout_height="wrap_content"
                 android:text="@string/cancelar"
-                android:layout_marginLeft="60dip"
+                android:layout_weight="1"
                 android:visibility="gone" />
                 
             <Button
@@ -67,7 +67,7 @@
                 android:layout_width="160dip"
                 android:layout_height="wrap_content"
                 android:text="@string/select_contacts"
-                android:layout_marginLeft="60dip"
+                android:layout_weight="1"
                 android:visibility="gone" />
                 
         </LinearLayout>
