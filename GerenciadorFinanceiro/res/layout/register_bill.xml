@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:typeface="serif"
                 android:singleLine="true"
-                android:maxLength="40"
+                android:maxLength="20"
                 android:layout_marginBottom="5dip" />
 
             <!-- Valor e Vencimento -->
