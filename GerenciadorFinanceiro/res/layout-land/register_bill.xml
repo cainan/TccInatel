@@ -40,7 +40,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:maxLength="40"
+                android:maxLength="20"
                 android:typeface="serif"
                 android:layout_marginBottom="5dip" />
 
