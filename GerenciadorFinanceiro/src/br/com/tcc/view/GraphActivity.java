@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import br.com.tcc.model.Conta;
@@ -16,7 +15,7 @@ import com.java4less.rchart.ChartLoader;
 import com.java4less.rchart.android.ChartPanel;
 import com.java4less.rchart.gc.android.ChartAndroidImage;
 
-public class GraphActivity extends Activity {
+public class GraphActivity extends BaseActivity {
 
     /** Hold the chart */
     private ChartLoader mChart = new ChartLoader();

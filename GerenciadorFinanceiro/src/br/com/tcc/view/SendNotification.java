@@ -3,7 +3,6 @@ package br.com.tcc.view;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import br.com.tcc.R;
 
-public class SendNotification extends Activity {
+public class SendNotification extends BaseActivity {
 	
 	public static final String SUBJECT = "Notificação de contas";
 	
