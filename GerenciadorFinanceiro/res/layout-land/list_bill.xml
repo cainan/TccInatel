@@ -66,7 +66,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="18dp"
                 android:layout_toLeftOf="@+id/text_totalizador"
-                android:layout_marginLeft="60dip"
+                android:layout_marginLeft="50dip"
                 android:text="@string/total_txt"
                 android:visibility="gone" />
 
