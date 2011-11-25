@@ -354,10 +354,16 @@ public class ListActivity extends BaseActivity {
         for (Conta bill : bills) {
             total += Float.parseFloat(bill.getValor());
         }
-        NumberFormat nf = NumberFormat.getCurrencyInstance((new Locale("pt", "BR")));
 
-        if (mTextTotal != null) {
-            mTextTotal.setText(nf.format(total));
+        NumberFormat nf = NumberFormat.getCurrencyInstance((new Locale("pt", "BR")));
+        if (total <= 99999) {
+            if (mTextTotal != null) {
+                mTextTotal.setText(nf.format(total));
+            }
+        } else {
+            if (mTextTotal != null) {
+                mTextTotal.setText("> " + nf.format(99999));
+            }
         }
     }
 
