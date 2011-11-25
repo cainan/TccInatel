@@ -21,6 +21,14 @@ public class BaseActivity extends Activity {
         overridePendingTransition(R.anim.fade, R.anim.fade_out);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // put some animations when transition from an activity to another
+        overridePendingTransition(R.anim.fade, R.anim.fade_out);
+    }
+
     /**
      * Turn the gps off
      */
