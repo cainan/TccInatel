@@ -2,6 +2,7 @@ package br.com.tcc.view;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 import android.app.AlertDialog;
@@ -298,15 +299,18 @@ public class ListActivity extends BaseActivity {
         switch (getPosition()) {
         case 0:
             mBills = mDatabase.readAll();
-            calculateTotal(mBills);
             break;
         case 1:
-            mBills = mDatabase.readBillToPay();
-            calculateTotal(mBills);
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            mBills = mDatabase.readMonthlyBills(month, year, false);
             break;
         case 2:
+            mBills = mDatabase.readBillToPay();
+            break;
+        case 3:
             mBills = mDatabase.readBillPaid();
-            calculateTotal(mBills);
             break;
         }
     }
@@ -415,9 +419,15 @@ public class ListActivity extends BaseActivity {
                     mBills = mDatabase.readAll();
                     break;
                 case 1:
-                    mBills = mDatabase.readBillToPay();
+                    Calendar calendar = Calendar.getInstance();
+                    int year = calendar.get(Calendar.YEAR);
+                    int month = calendar.get(Calendar.MONTH) + 1;
+                    mBills = mDatabase.readAllMonthlyBills(month, year);
                     break;
                 case 2:
+                    mBills = mDatabase.readBillToPay();
+                    break;
+                case 3:
                     mBills = mDatabase.readBillPaid();
                     break;
                 }

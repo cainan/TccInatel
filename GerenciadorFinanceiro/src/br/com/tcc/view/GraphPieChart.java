@@ -2,6 +2,7 @@ package br.com.tcc.view;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 import org.achartengine.ChartFactory;
@@ -60,7 +61,10 @@ public class GraphPieChart extends AbstractDemoChart{
 	
 	private double getBillToPay(Context context) {
 		DatabaseDelegate mDatabase = DatabaseDelegate.getInstance(context);
-		ArrayList<Conta> mBillsToPay = mDatabase.readBillToPay();
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+		ArrayList<Conta> mBillsToPay = mDatabase.readMonthlyBills(month, year, false);
 		double totalBillsToPay = 0;
 		for (Conta c : mBillsToPay) {
 			totalBillsToPay += Double.parseDouble(c.getValor());
@@ -70,7 +74,10 @@ public class GraphPieChart extends AbstractDemoChart{
 	
 	private double getBillPaid(Context context) {
 		DatabaseDelegate mDatabase = DatabaseDelegate.getInstance(context);
-		ArrayList<Conta> mBillsPaid = mDatabase.readBillPaid();
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+		ArrayList<Conta> mBillsPaid = mDatabase.readMonthlyBills(month, year, true);
 		double totalBillsPaid = 0;
 		for (Conta c : mBillsPaid) {
 			totalBillsPaid += Double.parseDouble(c.getValor());
