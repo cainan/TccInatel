@@ -3,7 +3,8 @@
 
     <string-array
         name="spinner_item">
-        <item>TODAS</item>
+        <item>Todas</item>
+        <item>Mês atual</item>
         <item>A Pagar</item>
         <item>Pagas</item>
     </string-array>
