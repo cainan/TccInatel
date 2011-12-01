@@ -3,7 +3,7 @@
     <string name="app_name">Gerenciador Financeiro</string>
     <string name="exit">Sair</string>
     <string name="sobre">Sobre</string>
-    <string name="about_txt">Inatel - TCC \nTema: S.O. Android \nVersão: 2.0.4 \nData: 17/11/2011</string>
+    <string name="about_txt">Inatel - TCC \nTema: S.O. Android \nVersão: 2.0.5 \nData: 01/12/2011</string>
     <string name="register_bill_txt">Cadastrar Conta</string>
     <string name="location_gps">Localizar Bancos</string>
     <string name="name_txt">Conta*:</string>
@@ -37,7 +37,7 @@
     <string name="remove_txt">Remover</string>
     <string name="today_bills">Contas de Hoje:</string>
     <string name="empty_list">Nenhuma Conta foi \nCadastrada.</string>
-    <string name="empty_list_contact">Nenhum Contato foi \nCadastrada.</string>
+    <string name="empty_list_contact">Nenhum Contato foi \nCadastrado.</string>
     <string name="spinner_prompt">Listar:</string>
     <string name="sms">Enviar por SMS</string>
     <string name="email">Enviar por E-mail</string>
