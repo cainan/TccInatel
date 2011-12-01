@@ -149,7 +149,7 @@ public class DatabaseDelegate {
                 if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
                 } else {
-                    conta.setPago(false);
+                    conta.setPago(true);
                 }
 
                 arrayConta.add(conta);
@@ -197,7 +197,7 @@ public class DatabaseDelegate {
                 if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
                 } else {
-                    conta.setPago(false);
+                    conta.setPago(true);
                 }
 
                 arrayConta.add(conta);
@@ -251,7 +251,60 @@ public class DatabaseDelegate {
                 if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
                 } else {
+                    conta.setPago(true);
+                }
+                conta.setDia(cursor.getString(7));
+                conta.setMes(cursor.getString(8));
+                conta.setAno(cursor.getString(9));
+
+                arrayConta.add(conta);
+                cursor.moveToNext();
+            }
+        }
+
+        // Open Database
+        closeDb();
+
+        return arrayConta;
+
+    }
+    
+    /**
+     * Read All the bills of current month
+     * 
+     * @param month
+     * @param year
+     */
+    public synchronized ArrayList<Conta> readAllMonthlyBills(int month, int year) {
+        // Open Database
+        mDataBase = mDatabaseHelper.getWritableDatabase();
+
+        ArrayList<Conta> arrayConta = new ArrayList<Conta>();
+        Conta conta;
+
+        String[] allColumns = { "_id", "conta", "valor", "vencimento", "notificar", "codigo",
+                "status", "dia", "mes", "ano" };
+
+        String where;
+        where = "mes=" + month + " and ano=" + year;
+
+        // SELECT * FROM CONTAS WHERE MES = ? AND ANO = ?
+        Cursor cursor = mDataBase.query(TABLE_NAME, allColumns, where, null, null, null, "dia");
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                conta = new Conta();
+                conta.setId(cursor.getInt(0));
+                conta.setNome(cursor.getString(1));
+                conta.setValor(cursor.getString(2));
+                conta.setVencimento(cursor.getString(3));
+                conta.setNotificar(cursor.getString(4));
+                conta.setCodigoBarra(cursor.getString(5));
+                if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
+                } else {
+                    conta.setPago(true);
                 }
                 conta.setDia(cursor.getString(7));
                 conta.setMes(cursor.getString(8));
@@ -307,7 +360,7 @@ public class DatabaseDelegate {
                 if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
                 } else {
-                    conta.setPago(false);
+                    conta.setPago(true);
                 }
                 conta.setDia(cursor.getString(7));
                 conta.setMes(cursor.getString(8));
@@ -364,7 +417,7 @@ public class DatabaseDelegate {
                 if (cursor.getInt(6) == 0) {
                     conta.setPago(false);
                 } else {
-                    conta.setPago(false);
+                    conta.setPago(true);
                 }
                 conta.setDia(cursor.getString(7));
                 conta.setMes(cursor.getString(8));
